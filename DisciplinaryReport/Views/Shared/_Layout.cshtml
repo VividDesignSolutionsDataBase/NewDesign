@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Department of Corrections</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body class="content-wrapper">
+    <header>
+        <div>
+            <div class="float-left">
+                <img class="site-title" src="~/Images/Logo.jpg" width="509" height="100" />
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+                <nav>
+                    <ul id="menu">
+                        @if (Request.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Chief"))
+                            {
+                                <ul class="SubMenuItem">
+                                    <li>@Html.ActionLink("Administrator", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Create Report", "DR", "Home")</li>
+                                    <li>@Html.ActionLink("Search", "Index", "Inmate")</li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="SubMenuItem">
+                                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                                </ul>
+                            }
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - VividDesign Solutions</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

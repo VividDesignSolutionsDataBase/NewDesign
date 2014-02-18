@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SQLGeneration</id>
+    <version>2.3.1.0</version>
+    <title>SQLGeneration</title>
+    <authors>Truncon</authors>
+    <owners>Truncon</owners>
+    <projectUrl>http://github.com/jehugaleahsa/sqlgeneration</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An object model for generating SQL at runtime.</description>
+    <releaseNotes>Record Token Type When Building Commands</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <language />
+    <tags>SQL generation builder building command select insert update delete</tags>
+  </metadata>
+</package>

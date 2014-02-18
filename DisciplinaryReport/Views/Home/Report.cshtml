@@ -1,0 +1,77 @@
+﻿@model PagedList.IPagedList<DisciplinaryReport.Models.FormModel>
+@using PagedList;
+@using PagedList.Mvc;
+
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Search Disciplinary Report</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<fieldset>
+    @using (Html.BeginForm("Report", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+    {
+        <p>
+            Search: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+
+
+        </p>
+    }
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>
+                @Html.ActionLink("Inmate Last Name", "Report", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th>
+                Inmate First Name
+            </th>
+            <th>
+                @Html.ActionLink("Report Date", "Report", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DR_INM_LAST_NAME }, new { target = "linkId" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DR_INM_LAST_NAME }, new { target = "linkId" })
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DR_INM_LAST_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DR_INM_FIRST_NAME)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DR_FAC_LOCATION)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DR_INCIDENT_DATE)
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Report", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+</fieldset>

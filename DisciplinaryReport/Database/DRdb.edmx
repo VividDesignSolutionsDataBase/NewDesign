@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DRdb.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DRdbStoreContainer">
+    <EntitySet Name="DRHearings" EntityType="DRdb.Store.DRHearings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DRInvestigations" EntityType="DRdb.Store.DRInvestigations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DisciplinaryReports" EntityType="DRdb.Store.DisciplinaryReports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="DRdb.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Violations" EntityType="DRdb.Store.Violations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="DRdb.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EmployeeDisciplinaryReport" Association="DRdb.Store.EmployeeDisciplinaryReport">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+    </AssociationSet>
+    <AssociationSet Name="LocationDisciplinaryReport" Association="DRdb.Store.LocationDisciplinaryReport">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+    </AssociationSet>
+    <AssociationSet Name="ViolationDisciplinaryReport" Association="DRdb.Store.ViolationDisciplinaryReport">
+      <End Role="Violation" EntitySet="Violations" />
+      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+    </AssociationSet>
+    <AssociationSet Name="DisciplinaryReportDRInvestigation" Association="DRdb.Store.DisciplinaryReportDRInvestigation">
+      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+      <End Role="DRInvestigation" EntitySet="DRInvestigations" />
+    </AssociationSet>
+    <AssociationSet Name="DRInvestigationDRHearing" Association="DRdb.Store.DRInvestigationDRHearing">
+      <End Role="DRInvestigation" EntitySet="DRInvestigations" />
+      <End Role="DRHearing" EntitySet="DRHearings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DRHearings">
+    <Key>
+      <PropertyRef Name="DR_HEAR_CHIEF_ID" />
+      <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
+      <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
+      <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+      <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+    </Key>
+    <Property Name="DR_HEAR_CHIEF_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRInvestigationDR_INVEST_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" Type="int" Nullable="false" />
+    <Property Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_INM_PLEA" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_WIT_REQ" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_NO_REAPORTS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_DATE" Type="datetime" Nullable="false" />
+    <Property Name="DR_HEAR_DEC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_APPEAL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_DAYS_DSC_CONF" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_WKS_LOSS_COMMIS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_DAYS_LOSS_GAINTIME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_REV_TENT_DEL_DATE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_COMMENT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_INM_INSTRULES_ACK" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_COM_CHAIR_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_INM_WIT_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_CHIEF_AGREE_FLAG" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_HEAR_CHIEF_REDUCE_FLAG" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DRInvestigations">
+    <Key>
+      <PropertyRef Name="DR_INVEST_EMP_ID" />
+      <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+      <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+      <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+    </Key>
+    <Property Name="DR_INVEST_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DisciplinaryReportDR_REPORT_NUM" Type="int" Nullable="false" />
+    <Property Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DisciplinaryReportEmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_DATE" Type="datetime" Nullable="false" />
+    <Property Name="DR_DATE_INVEST_COMP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_TIME_INVEST_COMP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_STATEMENT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_COMP_FLAG" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_VOID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_APPROVE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_REJECT" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_REJ_REASON" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INVEST_SUP_VOID" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DisciplinaryReports">
+    <Key>
+      <PropertyRef Name="DR_REPORT_NUM" />
+      <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
+      <PropertyRef Name="EmployeeEMP_ID" />
+    </Key>
+    <Property Name="DR_REPORT_NUM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_VIOLATION_CODE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_LAST_NAME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_FIRST_NAME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_RACE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_SEX" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_AGE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_FACILITY" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_FAC_LOCATION" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INM_CONT_LOG" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INCIDENT_DATE" Type="datetime" Nullable="false" />
+    <Property Name="DR_INCIDENT_TIME" Type="time" Nullable="false" />
+    <Property Name="DR_INCIDENT_LOCATION" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_STATE_FACTS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_DATE_INTISUB_COMP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_INITSUB_COMP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_FIRST_APPROVAL_FLAG" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_FIRST_REJECT_REASON" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DR_FIRST_REJECT_FLAG" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationLOC_FAC_CODE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ViolationVIO_CODE" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LOC_FAC_CODE" />
+    </Key>
+    <Property Name="LOC_FAC_CODE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LOC_FAC_DESC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LOC_CODE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LOC_DESC" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Violations">
+    <Key>
+      <PropertyRef Name="VIO_CODE" />
+    </Key>
+    <Property Name="VIO_CODE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VIO_SHORT_DESC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VIO_LONG_DESC" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VIO_R_FLAG" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EMP_ID" />
+    </Key>
+    <Property Name="EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMP_PASSW" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMP_LAST_NAME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMP_FIRST_NAME" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMP_ROLE" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EMP_LOCATION" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="EmployeeDisciplinaryReport">
+    <End Role="Employee" Type="DRdb.Store.Employees" Multiplicity="1" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EMP_ID" />
+      </Principal>
+      <Dependent Role="DisciplinaryReport">
+        <PropertyRef Name="EmployeeEMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationDisciplinaryReport">
+    <End Role="Location" Type="DRdb.Store.Locations" Multiplicity="1" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LOC_FAC_CODE" />
+      </Principal>
+      <Dependent Role="DisciplinaryReport">
+        <PropertyRef Name="LocationLOC_FAC_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ViolationDisciplinaryReport">
+    <End Role="Violation" Type="DRdb.Store.Violations" Multiplicity="1" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Violation">
+        <PropertyRef Name="VIO_CODE" />
+      </Principal>
+      <Dependent Role="DisciplinaryReport">
+        <PropertyRef Name="ViolationVIO_CODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DisciplinaryReportDRInvestigation">
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="1" />
+    <End Role="DRInvestigation" Type="DRdb.Store.DRInvestigations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DisciplinaryReport">
+        <PropertyRef Name="DR_REPORT_NUM" />
+        <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="EmployeeEMP_ID" />
+      </Principal>
+      <Dependent Role="DRInvestigation">
+        <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+        <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DRInvestigationDRHearing">
+    <End Role="DRInvestigation" Type="DRdb.Store.DRInvestigations" Multiplicity="1" />
+    <End Role="DRHearing" Type="DRdb.Store.DRHearings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRInvestigation">
+        <PropertyRef Name="DR_INVEST_EMP_ID" />
+        <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+        <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+      </Principal>
+      <Dependent Role="DRHearing">
+        <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
+        <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
+        <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DRdb" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DRdbContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DRHearings" EntityType="DRdb.DRHearing" />
+          <EntitySet Name="DRInvestigations" EntityType="DRdb.DRInvestigation" />
+          <EntitySet Name="DRs" EntityType="DRdb.DR" />
+          <EntitySet Name="Locations" EntityType="DRdb.Location" />
+          <EntitySet Name="Violations" EntityType="DRdb.Violation" />
+          <EntitySet Name="Employees" EntityType="DRdb.Employee" />
+          <AssociationSet Name="EmployeeDisciplinaryReport" Association="DRdb.EmployeeDisciplinaryReport">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="DisciplinaryReport" EntitySet="DRs" />
+          </AssociationSet>
+          <AssociationSet Name="LocationDisciplinaryReport" Association="DRdb.LocationDisciplinaryReport">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="DisciplinaryReport" EntitySet="DRs" />
+          </AssociationSet>
+          <AssociationSet Name="ViolationDisciplinaryReport" Association="DRdb.ViolationDisciplinaryReport">
+            <End Role="Violation" EntitySet="Violations" />
+            <End Role="DisciplinaryReport" EntitySet="DRs" />
+          </AssociationSet>
+          <AssociationSet Name="DisciplinaryReportDRInvestigation" Association="DRdb.DisciplinaryReportDRInvestigation">
+            <End Role="DisciplinaryReport" EntitySet="DRs" />
+            <End Role="DRInvestigation" EntitySet="DRInvestigations" />
+          </AssociationSet>
+          <AssociationSet Name="DRInvestigationDRHearing" Association="DRdb.DRInvestigationDRHearing">
+            <End Role="DRInvestigation" EntitySet="DRInvestigations" />
+            <End Role="DRHearing" EntitySet="DRHearings" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DRHearing">
+          <Key>
+            <PropertyRef Name="DR_HEAR_CHIEF_ID" />
+            <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
+            <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
+            <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+            <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+          </Key>
+          <Property Name="DR_HEAR_CHIEF_ID" Type="String" Nullable="false" />
+          <Property Name="DRInvestigationDR_INVEST_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_PLEA" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_WIT_REQ" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_NO_REAPORTS" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_HEAR_DEC" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_APPEAL" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DAYS_DSC_CONF" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_WKS_LOSS_COMMIS" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DAYS_LOSS_GAINTIME" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_REV_TENT_DEL_DATE" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_COMMENT" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_INSTRULES_ACK" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_COM_CHAIR_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_WIT_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_CHIEF_AGREE_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_CHIEF_REDUCE_FLAG" Type="String" Nullable="false" />
+          <NavigationProperty Name="DRInvestigation" Relationship="DRdb.DRInvestigationDRHearing" FromRole="DRHearing" ToRole="DRInvestigation" />
+        </EntityType>
+        <EntityType Name="DRInvestigation">
+          <Key>
+            <PropertyRef Name="DR_INVEST_EMP_ID" />
+            <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+            <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+            <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+          </Key>
+          <Property Name="DR_INVEST_EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="DisciplinaryReportDR_REPORT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DisciplinaryReportEmployeeEMP_ID" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_DATE_INVEST_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_TIME_INVEST_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_STATEMENT" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_COMP_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_VOID" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_APPROVE" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_REJECT" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_REJ_REASON" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_SUP_VOID" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisciplinaryReport" Relationship="DRdb.DisciplinaryReportDRInvestigation" FromRole="DRInvestigation" ToRole="DisciplinaryReport" />
+          <NavigationProperty Name="DRHearings" Relationship="DRdb.DRInvestigationDRHearing" FromRole="DRInvestigation" ToRole="DRHearing" />
+        </EntityType>
+        <EntityType Name="DR">
+          <Key>
+            <PropertyRef Name="DR_REPORT_NUM" />
+            <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
+            <PropertyRef Name="EmployeeEMP_ID" />
+          </Key>
+          <Property Name="DR_REPORT_NUM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="EmployeeEMP_ID" Type="String" Nullable="false" />
+          <Property Name="DR_INM_VIOLATION_CODE" Type="String" Nullable="false" />
+          <Property Name="DR_INM_LAST_NAME" Type="String" Nullable="false" />
+          <Property Name="DR_INM_FIRST_NAME" Type="String" Nullable="false" />
+          <Property Name="DR_INM_RACE" Type="String" Nullable="false" />
+          <Property Name="DR_INM_SEX" Type="String" Nullable="false" />
+          <Property Name="DR_INM_AGE" Type="String" Nullable="false" />
+          <Property Name="DR_FACILITY" Type="String" Nullable="false" />
+          <Property Name="DR_FAC_LOCATION" Type="String" Nullable="false" />
+          <Property Name="DR_INM_CONT_LOG" Type="String" Nullable="false" />
+          <Property Name="DR_INCIDENT_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_INCIDENT_TIME" Type="Time" Nullable="false" />
+          <Property Name="DR_INCIDENT_LOCATION" Type="String" Nullable="false" />
+          <Property Name="DR_STATE_FACTS" Type="String" Nullable="false" />
+          <Property Name="DR_DATE_INTISUB_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_INITSUB_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_APPROVAL_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_REJECT_REASON" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_REJECT_FLAG" Type="String" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="DRdb.EmployeeDisciplinaryReport" FromRole="DisciplinaryReport" ToRole="Employee" />
+          <NavigationProperty Name="Location" Relationship="DRdb.LocationDisciplinaryReport" FromRole="DisciplinaryReport" ToRole="Location" />
+          <Property Name="LocationLOC_FAC_CODE" Type="String" Nullable="false" />
+          <NavigationProperty Name="Violation" Relationship="DRdb.ViolationDisciplinaryReport" FromRole="DisciplinaryReport" ToRole="Violation" />
+          <Property Name="ViolationVIO_CODE" Type="String" Nullable="false" />
+          <NavigationProperty Name="DRInvestigations" Relationship="DRdb.DisciplinaryReportDRInvestigation" FromRole="DisciplinaryReport" ToRole="DRInvestigation" />
+          </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LOC_FAC_CODE" />
+          </Key>
+          <Property Name="LOC_FAC_CODE" Type="String" Nullable="false" />
+          <Property Name="LOC_FAC_DESC" Type="String" Nullable="false" />
+          <Property Name="LOC_CODE" Type="String" Nullable="false" />
+          <Property Name="LOC_DESC" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisciplinaryReports" Relationship="DRdb.LocationDisciplinaryReport" FromRole="Location" ToRole="DisciplinaryReport" />
+        </EntityType>
+        <EntityType Name="Violation">
+          <Key>
+            <PropertyRef Name="VIO_CODE" />
+          </Key>
+          <Property Name="VIO_CODE" Type="String" Nullable="false" />
+          <Property Name="VIO_SHORT_DESC" Type="String" Nullable="false" />
+          <Property Name="VIO_LONG_DESC" Type="String" Nullable="false" />
+          <Property Name="VIO_R_FLAG" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisciplinaryReports" Relationship="DRdb.ViolationDisciplinaryReport" FromRole="Violation" ToRole="DisciplinaryReport" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="EMP_PASSW" Type="String" Nullable="false" />
+          <Property Name="EMP_LAST_NAME" Type="String" Nullable="false" />
+          <Property Name="EMP_FIRST_NAME" Type="String" Nullable="false" />
+          <Property Name="EMP_ROLE" Type="String" Nullable="false" />
+          <Property Name="EMP_LOCATION" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisciplinaryReports" Relationship="DRdb.EmployeeDisciplinaryReport" FromRole="Employee" ToRole="DisciplinaryReport" />
+        </EntityType>
+        <Association Name="EmployeeDisciplinaryReport">
+          <End Type="DRdb.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="DRdb.DR" Role="DisciplinaryReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="DisciplinaryReport">
+              <PropertyRef Name="EmployeeEMP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocationDisciplinaryReport">
+          <End Type="DRdb.Location" Role="Location" Multiplicity="1" />
+          <End Type="DRdb.DR" Role="DisciplinaryReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LOC_FAC_CODE" />
+            </Principal>
+            <Dependent Role="DisciplinaryReport">
+              <PropertyRef Name="LocationLOC_FAC_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ViolationDisciplinaryReport">
+          <End Type="DRdb.Violation" Role="Violation" Multiplicity="1" />
+          <End Type="DRdb.DR" Role="DisciplinaryReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Violation">
+              <PropertyRef Name="VIO_CODE" />
+            </Principal>
+            <Dependent Role="DisciplinaryReport">
+              <PropertyRef Name="ViolationVIO_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DisciplinaryReportDRInvestigation">
+          <End Type="DRdb.DR" Role="DisciplinaryReport" Multiplicity="1" />
+          <End Type="DRdb.DRInvestigation" Role="DRInvestigation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DisciplinaryReport">
+              <PropertyRef Name="DR_REPORT_NUM" />
+              <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="EmployeeEMP_ID" />
+            </Principal>
+            <Dependent Role="DRInvestigation">
+              <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+              <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DRInvestigationDRHearing">
+          <End Type="DRdb.DRInvestigation" Role="DRInvestigation" Multiplicity="1" />
+          <End Type="DRdb.DRHearing" Role="DRHearing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRInvestigation">
+              <PropertyRef Name="DR_INVEST_EMP_ID" />
+              <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
+              <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+            </Principal>
+            <Dependent Role="DRHearing">
+              <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
+              <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
+              <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DRdbStoreContainer" CdmEntityContainer="DRdbContainer">
+    <EntitySetMapping Name="DRHearings">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.DRHearing)">
+        <MappingFragment StoreEntitySet="DRHearings">
+          <ScalarProperty Name="DR_HEAR_CHIEF_ID" ColumnName="DR_HEAR_CHIEF_ID" />
+          <ScalarProperty Name="DRInvestigationDR_INVEST_EMP_ID" ColumnName="DRInvestigationDR_INVEST_EMP_ID" />
+          <ScalarProperty Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" ColumnName="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
+          <ScalarProperty Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" ColumnName="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+          <ScalarProperty Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" ColumnName="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+          <ScalarProperty Name="DR_HEAR_INM_PLEA" ColumnName="DR_HEAR_INM_PLEA" />
+          <ScalarProperty Name="DR_HEAR_WIT_REQ" ColumnName="DR_HEAR_WIT_REQ" />
+          <ScalarProperty Name="DR_HEAR_NO_REAPORTS" ColumnName="DR_HEAR_NO_REAPORTS" />
+          <ScalarProperty Name="DR_HEAR_DATE" ColumnName="DR_HEAR_DATE" />
+          <ScalarProperty Name="DR_HEAR_DEC" ColumnName="DR_HEAR_DEC" />
+          <ScalarProperty Name="DR_HEAR_APPEAL" ColumnName="DR_HEAR_APPEAL" />
+          <ScalarProperty Name="DR_HEAR_DAYS_DSC_CONF" ColumnName="DR_HEAR_DAYS_DSC_CONF" />
+          <ScalarProperty Name="DR_HEAR_WKS_LOSS_COMMIS" ColumnName="DR_HEAR_WKS_LOSS_COMMIS" />
+          <ScalarProperty Name="DR_HEAR_DAYS_LOSS_GAINTIME" ColumnName="DR_HEAR_DAYS_LOSS_GAINTIME" />
+          <ScalarProperty Name="DR_HEAR_REV_TENT_DEL_DATE" ColumnName="DR_HEAR_REV_TENT_DEL_DATE" />
+          <ScalarProperty Name="DR_HEAR_COMMENT" ColumnName="DR_HEAR_COMMENT" />
+          <ScalarProperty Name="DR_HEAR_INM_INSTRULES_ACK" ColumnName="DR_HEAR_INM_INSTRULES_ACK" />
+          <ScalarProperty Name="DR_HEAR_COM_CHAIR_ID" ColumnName="DR_HEAR_COM_CHAIR_ID" />
+          <ScalarProperty Name="DR_HEAR_INM_WIT_ID" ColumnName="DR_HEAR_INM_WIT_ID" />
+          <ScalarProperty Name="DR_HEAR_CHIEF_AGREE_FLAG" ColumnName="DR_HEAR_CHIEF_AGREE_FLAG" />
+          <ScalarProperty Name="DR_HEAR_CHIEF_REDUCE_FLAG" ColumnName="DR_HEAR_CHIEF_REDUCE_FLAG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRInvestigations">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.DRInvestigation)">
+        <MappingFragment StoreEntitySet="DRInvestigations">
+          <ScalarProperty Name="DR_INVEST_EMP_ID" ColumnName="DR_INVEST_EMP_ID" />
+          <ScalarProperty Name="DisciplinaryReportDR_REPORT_NUM" ColumnName="DisciplinaryReportDR_REPORT_NUM" />
+          <ScalarProperty Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" ColumnName="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
+          <ScalarProperty Name="DisciplinaryReportEmployeeEMP_ID" ColumnName="DisciplinaryReportEmployeeEMP_ID" />
+          <ScalarProperty Name="DR_INVEST_DATE" ColumnName="DR_INVEST_DATE" />
+          <ScalarProperty Name="DR_DATE_INVEST_COMP" ColumnName="DR_DATE_INVEST_COMP" />
+          <ScalarProperty Name="DR_TIME_INVEST_COMP" ColumnName="DR_TIME_INVEST_COMP" />
+          <ScalarProperty Name="DR_INVEST_STATEMENT" ColumnName="DR_INVEST_STATEMENT" />
+          <ScalarProperty Name="DR_INVEST_COMP_FLAG" ColumnName="DR_INVEST_COMP_FLAG" />
+          <ScalarProperty Name="DR_INVEST_VOID" ColumnName="DR_INVEST_VOID" />
+          <ScalarProperty Name="DR_INVEST_APPROVE" ColumnName="DR_INVEST_APPROVE" />
+          <ScalarProperty Name="DR_INVEST_REJECT" ColumnName="DR_INVEST_REJECT" />
+          <ScalarProperty Name="DR_INVEST_REJ_REASON" ColumnName="DR_INVEST_REJ_REASON" />
+          <ScalarProperty Name="DR_INVEST_SUP_VOID" ColumnName="DR_INVEST_SUP_VOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRs">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.DR)">
+        <MappingFragment StoreEntitySet="DisciplinaryReports">
+          <ScalarProperty Name="DR_REPORT_NUM" ColumnName="DR_REPORT_NUM" />
+          <ScalarProperty Name="DR_FIRST_APPROVAL_EMP_ID" ColumnName="DR_FIRST_APPROVAL_EMP_ID" />
+          <ScalarProperty Name="EmployeeEMP_ID" ColumnName="EmployeeEMP_ID" />
+          <ScalarProperty Name="DR_INM_VIOLATION_CODE" ColumnName="DR_INM_VIOLATION_CODE" />
+          <ScalarProperty Name="DR_INM_LAST_NAME" ColumnName="DR_INM_LAST_NAME" />
+          <ScalarProperty Name="DR_INM_FIRST_NAME" ColumnName="DR_INM_FIRST_NAME" />
+          <ScalarProperty Name="DR_INM_RACE" ColumnName="DR_INM_RACE" />
+          <ScalarProperty Name="DR_INM_SEX" ColumnName="DR_INM_SEX" />
+          <ScalarProperty Name="DR_INM_AGE" ColumnName="DR_INM_AGE" />
+          <ScalarProperty Name="DR_FACILITY" ColumnName="DR_FACILITY" />
+          <ScalarProperty Name="DR_FAC_LOCATION" ColumnName="DR_FAC_LOCATION" />
+          <ScalarProperty Name="DR_INM_CONT_LOG" ColumnName="DR_INM_CONT_LOG" />
+          <ScalarProperty Name="DR_INCIDENT_DATE" ColumnName="DR_INCIDENT_DATE" />
+          <ScalarProperty Name="DR_INCIDENT_TIME" ColumnName="DR_INCIDENT_TIME" />
+          <ScalarProperty Name="DR_INCIDENT_LOCATION" ColumnName="DR_INCIDENT_LOCATION" />
+          <ScalarProperty Name="DR_STATE_FACTS" ColumnName="DR_STATE_FACTS" />
+          <ScalarProperty Name="DR_DATE_INTISUB_COMP" ColumnName="DR_DATE_INTISUB_COMP" />
+          <ScalarProperty Name="DR_INITSUB_COMP" ColumnName="DR_INITSUB_COMP" />
+          <ScalarProperty Name="DR_FIRST_APPROVAL_FLAG" ColumnName="DR_FIRST_APPROVAL_FLAG" />
+          <ScalarProperty Name="DR_FIRST_REJECT_REASON" ColumnName="DR_FIRST_REJECT_REASON" />
+          <ScalarProperty Name="DR_FIRST_REJECT_FLAG" ColumnName="DR_FIRST_REJECT_FLAG" />
+          <ScalarProperty Name="LocationLOC_FAC_CODE" ColumnName="LocationLOC_FAC_CODE" />
+          <ScalarProperty Name="ViolationVIO_CODE" ColumnName="ViolationVIO_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="LOC_FAC_CODE" ColumnName="LOC_FAC_CODE" />
+          <ScalarProperty Name="LOC_FAC_DESC" ColumnName="LOC_FAC_DESC" />
+          <ScalarProperty Name="LOC_CODE" ColumnName="LOC_CODE" />
+          <ScalarProperty Name="LOC_DESC" ColumnName="LOC_DESC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Violations">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.Violation)">
+        <MappingFragment StoreEntitySet="Violations">
+          <ScalarProperty Name="VIO_CODE" ColumnName="VIO_CODE" />
+          <ScalarProperty Name="VIO_SHORT_DESC" ColumnName="VIO_SHORT_DESC" />
+          <ScalarProperty Name="VIO_LONG_DESC" ColumnName="VIO_LONG_DESC" />
+          <ScalarProperty Name="VIO_R_FLAG" ColumnName="VIO_R_FLAG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(DRdb.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+          <ScalarProperty Name="EMP_PASSW" ColumnName="EMP_PASSW" />
+          <ScalarProperty Name="EMP_LAST_NAME" ColumnName="EMP_LAST_NAME" />
+          <ScalarProperty Name="EMP_FIRST_NAME" ColumnName="EMP_FIRST_NAME" />
+          <ScalarProperty Name="EMP_ROLE" ColumnName="EMP_ROLE" />
+          <ScalarProperty Name="EMP_LOCATION" ColumnName="EMP_LOCATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

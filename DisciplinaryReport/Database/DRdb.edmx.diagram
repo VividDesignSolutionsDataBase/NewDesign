@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b26b98a7176d44ed8c9c010a9d5a425d" Name="Diagram1" ZoomLevel="94" >
+        <EntityTypeShape EntityType="DRdb.DRHearing" Width="3.125" PointX="12" PointY="0.5" />
+        <EntityTypeShape EntityType="DRdb.DRInvestigation" Width="2.75" PointX="8" PointY="0.5" />
+        <EntityTypeShape EntityType="DRdb.DR" Width="2.25" PointX="4.375" PointY="0.5" />
+        <EntityTypeShape EntityType="DRdb.Location" Width="1.5" PointX="1.5" PointY="3" />
+        <EntityTypeShape EntityType="DRdb.Violation" Width="1.5" PointX="1.5" PointY="5.125" />
+        <EntityTypeShape EntityType="DRdb.Employee" Width="1.5" PointX="1.5" PointY="0.5" />
+        <AssociationConnector Association="DRdb.EmployeeDisciplinaryReport" />
+        <AssociationConnector Association="DRdb.LocationDisciplinaryReport" />
+        <AssociationConnector Association="DRdb.ViolationDisciplinaryReport" />
+        <AssociationConnector Association="DRdb.DisciplinaryReportDRInvestigation" />
+        <AssociationConnector Association="DRdb.DRInvestigationDRHearing" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
