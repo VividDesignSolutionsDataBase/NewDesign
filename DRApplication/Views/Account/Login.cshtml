@@ -1,0 +1,41 @@
+﻿@model DRApplication.Models.LoginModel
+
+<link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Progress";
+    Layout = null;
+}
+
+
+<h1 style="text-align:center">Welcome to Disciplinary Report Application</h1>
+<div class="container">
+    <section id="content">
+        <form action="">
+            <h1>Login Form</h1>
+            <div>
+
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "User Name" })
+                @Html.ValidationMessageFor(m => m.UserName)
+
+            </div>
+                    <div>
+
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password)
+
+                    </div>
+
+                <div>
+                    <input type="submit" value="Log in" />
+                </div>
+        </form>
+                <div class="button"><p style="text-align:center">&copy; @DateTime.Now.Year - VividDesign Solutions</p>
+</div>
+	</section><!-- content -->
+
+ </div>
+<footer>
+    <p></p>
+</footer>
+
+ 
