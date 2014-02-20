@@ -13,6 +13,12 @@ namespace DisciplinaryReport.Controllers
             return View();
         }
 
+        public ActionResult Form1a()
+        {
+
+            return View();
+        }
+
         public ActionResult Dashboard()
         {
             ViewBag.Title = "Dashboard";

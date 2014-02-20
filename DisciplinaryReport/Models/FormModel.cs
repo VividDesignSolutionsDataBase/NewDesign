@@ -30,9 +30,9 @@ namespace DisciplinaryReport.Models
         public string LocationLOC_FAC_CODE { get; set; }
         public string ViolationVIO_CODE { get; set; }
 
-        public virtual EmployeeModel Employee { get; set; }
-        public virtual LocationModel Location { get; set; }
-        public virtual ViolationModel Violation { get; set; }
-        public virtual ICollection<DRInvestigationModel> DRInvestigations { get; set; }
+        //public virtual Employee Employee { get; set; }
+        //public virtual Location Location { get; set; }
+        //public virtual Violation Violation { get; set; }
+        //public virtual ICollection<DRInvestigation> DRInvestigations { get; set; }
     }
 }

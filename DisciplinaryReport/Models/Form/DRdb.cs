@@ -1,22 +1,26 @@
-﻿using DisciplinaryReport.Models;
+﻿    using DisciplinaryReport.Database;
+using System;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Infrastructure;
 
 namespace DisciplinaryReport.Form
 {
-    public class DRdb : DbContext
-    {
+      public class DRdbContainer(): base("name=DRdbContainer")
+     
+      
 
-        public DbSet<FormModel> Forms { get; set; }
-        public DbSet<DRHearingModel> DRHearings { get; set; }
-        public DbSet<DRInvestigationModel> DRInvestigations { get; set; }
-        public DbSet<LocationModel> Locations { get; set; }
-        public DbSet<ViolationModel> Violations { get; set; }
-        public DbSet<EmployeeModel> Employees { get; set; }
-    
+        public virtual DbSet<DRHearing> DRHearings { get; set; }
+        public virtual DbSet<DRInvestigation> DRInvestigations { get; set; }
+        public virtual DbSet<DR> DRs { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Violation> Violations { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            throw new UnintentionalCodeFirstException();
         }
     }
+
 }
+    

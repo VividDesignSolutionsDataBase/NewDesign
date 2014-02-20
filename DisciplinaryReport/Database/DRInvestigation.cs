@@ -20,9 +20,9 @@ namespace DisciplinaryReport.Database
         }
     
         public string DR_INVEST_EMP_ID { get; set; }
-        public int DisciplinaryReportDR_REPORT_NUM { get; set; }
-        public string DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID { get; set; }
-        public string DisciplinaryReportEmployeeEMP_ID { get; set; }
+        public int DRDR_REPORT_NUM { get; set; }
+        public string DRDR_FIRST_APPROVAL_EMP_ID { get; set; }
+        public string DREmployeeEMP_ID { get; set; }
         public System.DateTime DR_INVEST_DATE { get; set; }
         public string DR_DATE_INVEST_COMP { get; set; }
         public string DR_TIME_INVEST_COMP { get; set; }
@@ -34,7 +34,7 @@ namespace DisciplinaryReport.Database
         public string DR_INVEST_REJ_REASON { get; set; }
         public string DR_INVEST_SUP_VOID { get; set; }
     
-        public virtual DR DisciplinaryReport { get; set; }
+        public virtual DR DR { get; set; }
         public virtual ICollection<DRHearing> DRHearings { get; set; }
     }
 }

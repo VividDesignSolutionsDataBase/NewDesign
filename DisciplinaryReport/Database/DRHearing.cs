@@ -16,9 +16,9 @@ namespace DisciplinaryReport.Database
     {
         public string DR_HEAR_CHIEF_ID { get; set; }
         public string DRInvestigationDR_INVEST_EMP_ID { get; set; }
-        public int DRInvestigationDisciplinaryReportDR_REPORT_NUM { get; set; }
-        public string DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID { get; set; }
-        public string DRInvestigationDisciplinaryReportEmployeeEMP_ID { get; set; }
+        public int DRInvestigationDRDR_REPORT_NUM { get; set; }
+        public string DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID { get; set; }
+        public string DRInvestigationDREmployeeEMP_ID { get; set; }
         public string DR_HEAR_INM_PLEA { get; set; }
         public string DR_HEAR_WIT_REQ { get; set; }
         public string DR_HEAR_NO_REAPORTS { get; set; }

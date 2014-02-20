@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/15/2014 01:37:45
--- Generated from EDMX file: C:\Users\Darian\Documents\_SCHOOL\Niloufar-UNF\Senior Project 1\JSO Project\DisciplinaryReport\DisciplinaryReport\DRdb.edmx
+-- Date Created: 02/19/2014 00:07:40
+-- Generated from EDMX file: C:\Users\Darian\Documents\_SCHOOL\Niloufar-UNF\Senior Project 1\JSO Project\DisciplinaryReport\DisciplinaryReport\Database\DRdb.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_EmployeeDisciplinaryReport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DisciplinaryReports] DROP CONSTRAINT [FK_EmployeeDisciplinaryReport];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LocationDisciplinaryReport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DisciplinaryReports] DROP CONSTRAINT [FK_LocationDisciplinaryReport];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ViolationDisciplinaryReport]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DisciplinaryReports] DROP CONSTRAINT [FK_ViolationDisciplinaryReport];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DisciplinaryReportDRInvestigation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DRInvestigations] DROP CONSTRAINT [FK_DisciplinaryReportDRInvestigation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DRInvestigationDRHearing]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DRHearings] DROP CONSTRAINT [FK_DRInvestigationDRHearing];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[DRHearings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DRHearings];
+GO
+IF OBJECT_ID(N'[dbo].[DRInvestigations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DRInvestigations];
+GO
+IF OBJECT_ID(N'[dbo].[DisciplinaryReports]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DisciplinaryReports];
+GO
+IF OBJECT_ID(N'[dbo].[Locations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Locations];
+GO
+IF OBJECT_ID(N'[dbo].[Violations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Violations];
+GO
+IF OBJECT_ID(N'[dbo].[Employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Employees];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -31,9 +64,9 @@ GO
 CREATE TABLE [dbo].[DRHearings] (
     [DR_HEAR_CHIEF_ID] nvarchar(max)  NOT NULL,
     [DRInvestigationDR_INVEST_EMP_ID] nvarchar(max)  NOT NULL,
-    [DRInvestigationDisciplinaryReportDR_REPORT_NUM] int  NOT NULL,
-    [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID] nvarchar(max)  NOT NULL,
-    [DRInvestigationDisciplinaryReportEmployeeEMP_ID] nvarchar(max)  NOT NULL,
+    [DRInvestigationDRDR_REPORT_NUM] int  NOT NULL,
+    [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID] nvarchar(max)  NOT NULL,
+    [DRInvestigationDREmployeeEMP_ID] nvarchar(max)  NOT NULL,
     [DR_HEAR_INM_PLEA] nvarchar(max)  NOT NULL,
     [DR_HEAR_WIT_REQ] nvarchar(max)  NOT NULL,
     [DR_HEAR_NO_REAPORTS] nvarchar(max)  NOT NULL,
@@ -56,9 +89,9 @@ GO
 -- Creating table 'DRInvestigations'
 CREATE TABLE [dbo].[DRInvestigations] (
     [DR_INVEST_EMP_ID] nvarchar(max)  NOT NULL,
-    [DisciplinaryReportDR_REPORT_NUM] int  NOT NULL,
-    [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID] nvarchar(max)  NOT NULL,
-    [DisciplinaryReportEmployeeEMP_ID] nvarchar(max)  NOT NULL,
+    [DRDR_REPORT_NUM] int  NOT NULL,
+    [DRDR_FIRST_APPROVAL_EMP_ID] nvarchar(max)  NOT NULL,
+    [DREmployeeEMP_ID] nvarchar(max)  NOT NULL,
     [DR_INVEST_DATE] datetime  NOT NULL,
     [DR_DATE_INVEST_COMP] nvarchar(max)  NOT NULL,
     [DR_TIME_INVEST_COMP] nvarchar(max)  NOT NULL,
@@ -72,8 +105,8 @@ CREATE TABLE [dbo].[DRInvestigations] (
 );
 GO
 
--- Creating table 'DisciplinaryReports'
-CREATE TABLE [dbo].[DisciplinaryReports] (
+-- Creating table 'DRs'
+CREATE TABLE [dbo].[DRs] (
     [DR_REPORT_NUM] int IDENTITY(1,1) NOT NULL,
     [DR_FIRST_APPROVAL_EMP_ID] nvarchar(max)  NOT NULL,
     [EmployeeEMP_ID] nvarchar(max)  NOT NULL,
@@ -133,21 +166,21 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [DR_HEAR_CHIEF_ID], [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDisciplinaryReportDR_REPORT_NUM], [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDisciplinaryReportEmployeeEMP_ID] in table 'DRHearings'
+-- Creating primary key on [DR_HEAR_CHIEF_ID], [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDRDR_REPORT_NUM], [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDREmployeeEMP_ID] in table 'DRHearings'
 ALTER TABLE [dbo].[DRHearings]
 ADD CONSTRAINT [PK_DRHearings]
-    PRIMARY KEY CLUSTERED ([DR_HEAR_CHIEF_ID], [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDisciplinaryReportDR_REPORT_NUM], [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDisciplinaryReportEmployeeEMP_ID] ASC);
+    PRIMARY KEY CLUSTERED ([DR_HEAR_CHIEF_ID], [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDRDR_REPORT_NUM], [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDREmployeeEMP_ID] ASC);
 GO
 
--- Creating primary key on [DR_INVEST_EMP_ID], [DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID] in table 'DRInvestigations'
+-- Creating primary key on [DR_INVEST_EMP_ID], [DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID] in table 'DRInvestigations'
 ALTER TABLE [dbo].[DRInvestigations]
 ADD CONSTRAINT [PK_DRInvestigations]
-    PRIMARY KEY CLUSTERED ([DR_INVEST_EMP_ID], [DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID] ASC);
+    PRIMARY KEY CLUSTERED ([DR_INVEST_EMP_ID], [DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID] ASC);
 GO
 
--- Creating primary key on [DR_REPORT_NUM], [DR_FIRST_APPROVAL_EMP_ID], [EmployeeEMP_ID] in table 'DisciplinaryReports'
-ALTER TABLE [dbo].[DisciplinaryReports]
-ADD CONSTRAINT [PK_DisciplinaryReports]
+-- Creating primary key on [DR_REPORT_NUM], [DR_FIRST_APPROVAL_EMP_ID], [EmployeeEMP_ID] in table 'DRs'
+ALTER TABLE [dbo].[DRs]
+ADD CONSTRAINT [PK_DRs]
     PRIMARY KEY CLUSTERED ([DR_REPORT_NUM], [DR_FIRST_APPROVAL_EMP_ID], [EmployeeEMP_ID] ASC);
 GO
 
@@ -173,8 +206,8 @@ GO
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [EmployeeEMP_ID] in table 'DisciplinaryReports'
-ALTER TABLE [dbo].[DisciplinaryReports]
+-- Creating foreign key on [EmployeeEMP_ID] in table 'DRs'
+ALTER TABLE [dbo].[DRs]
 ADD CONSTRAINT [FK_EmployeeDisciplinaryReport]
     FOREIGN KEY ([EmployeeEMP_ID])
     REFERENCES [dbo].[Employees]
@@ -183,12 +216,12 @@ ADD CONSTRAINT [FK_EmployeeDisciplinaryReport]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeDisciplinaryReport'
 CREATE INDEX [IX_FK_EmployeeDisciplinaryReport]
-ON [dbo].[DisciplinaryReports]
+ON [dbo].[DRs]
     ([EmployeeEMP_ID]);
 GO
 
--- Creating foreign key on [LocationLOC_FAC_CODE] in table 'DisciplinaryReports'
-ALTER TABLE [dbo].[DisciplinaryReports]
+-- Creating foreign key on [LocationLOC_FAC_CODE] in table 'DRs'
+ALTER TABLE [dbo].[DRs]
 ADD CONSTRAINT [FK_LocationDisciplinaryReport]
     FOREIGN KEY ([LocationLOC_FAC_CODE])
     REFERENCES [dbo].[Locations]
@@ -197,12 +230,12 @@ ADD CONSTRAINT [FK_LocationDisciplinaryReport]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LocationDisciplinaryReport'
 CREATE INDEX [IX_FK_LocationDisciplinaryReport]
-ON [dbo].[DisciplinaryReports]
+ON [dbo].[DRs]
     ([LocationLOC_FAC_CODE]);
 GO
 
--- Creating foreign key on [ViolationVIO_CODE] in table 'DisciplinaryReports'
-ALTER TABLE [dbo].[DisciplinaryReports]
+-- Creating foreign key on [ViolationVIO_CODE] in table 'DRs'
+ALTER TABLE [dbo].[DRs]
 ADD CONSTRAINT [FK_ViolationDisciplinaryReport]
     FOREIGN KEY ([ViolationVIO_CODE])
     REFERENCES [dbo].[Violations]
@@ -211,36 +244,36 @@ ADD CONSTRAINT [FK_ViolationDisciplinaryReport]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ViolationDisciplinaryReport'
 CREATE INDEX [IX_FK_ViolationDisciplinaryReport]
-ON [dbo].[DisciplinaryReports]
+ON [dbo].[DRs]
     ([ViolationVIO_CODE]);
 GO
 
--- Creating foreign key on [DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID] in table 'DRInvestigations'
+-- Creating foreign key on [DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID] in table 'DRInvestigations'
 ALTER TABLE [dbo].[DRInvestigations]
-ADD CONSTRAINT [FK_DisciplinaryReportDRInvestigation]
-    FOREIGN KEY ([DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID])
-    REFERENCES [dbo].[DisciplinaryReports]
+ADD CONSTRAINT [FK_DRDRInvestigation]
+    FOREIGN KEY ([DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID])
+    REFERENCES [dbo].[DRs]
         ([DR_REPORT_NUM], [DR_FIRST_APPROVAL_EMP_ID], [EmployeeEMP_ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
--- Creating non-clustered index for FOREIGN KEY 'FK_DisciplinaryReportDRInvestigation'
-CREATE INDEX [IX_FK_DisciplinaryReportDRInvestigation]
+-- Creating non-clustered index for FOREIGN KEY 'FK_DRDRInvestigation'
+CREATE INDEX [IX_FK_DRDRInvestigation]
 ON [dbo].[DRInvestigations]
-    ([DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID]);
+    ([DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID]);
 GO
 
--- Creating foreign key on [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDisciplinaryReportDR_REPORT_NUM], [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDisciplinaryReportEmployeeEMP_ID] in table 'DRHearings'
+-- Creating foreign key on [DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDRDR_REPORT_NUM], [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDREmployeeEMP_ID] in table 'DRHearings'
 ALTER TABLE [dbo].[DRHearings]
 ADD CONSTRAINT [FK_DRInvestigationDRHearing]
-    FOREIGN KEY ([DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDisciplinaryReportDR_REPORT_NUM], [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDisciplinaryReportEmployeeEMP_ID])
+    FOREIGN KEY ([DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDRDR_REPORT_NUM], [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDREmployeeEMP_ID])
     REFERENCES [dbo].[DRInvestigations]
-        ([DR_INVEST_EMP_ID], [DisciplinaryReportDR_REPORT_NUM], [DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DisciplinaryReportEmployeeEMP_ID])
+        ([DR_INVEST_EMP_ID], [DRDR_REPORT_NUM], [DRDR_FIRST_APPROVAL_EMP_ID], [DREmployeeEMP_ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DRInvestigationDRHearing'
 CREATE INDEX [IX_FK_DRInvestigationDRHearing]
 ON [dbo].[DRHearings]
-    ([DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDisciplinaryReportDR_REPORT_NUM], [DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDisciplinaryReportEmployeeEMP_ID]);
+    ([DRInvestigationDR_INVEST_EMP_ID], [DRInvestigationDRDR_REPORT_NUM], [DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID], [DRInvestigationDREmployeeEMP_ID]);
 GO
 
 -- --------------------------------------------------

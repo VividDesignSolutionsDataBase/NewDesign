@@ -5,6 +5,14 @@ using System.Text;
 
 namespace DisciplinaryReport.Models
 {
+    public enum Role
+    {
+        Admin,
+        Officer,
+        Supervisor,
+        Chief,
+        Auditor,
+    }
     class EmployeeModel
     {
     }

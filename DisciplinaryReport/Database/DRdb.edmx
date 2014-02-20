@@ -8,24 +8,24 @@
   <EntityContainer Name="DRdbStoreContainer">
     <EntitySet Name="DRHearings" EntityType="DRdb.Store.DRHearings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DRInvestigations" EntityType="DRdb.Store.DRInvestigations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DisciplinaryReports" EntityType="DRdb.Store.DisciplinaryReports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DRs" EntityType="DRdb.Store.DRs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Locations" EntityType="DRdb.Store.Locations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Violations" EntityType="DRdb.Store.Violations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Employees" EntityType="DRdb.Store.Employees" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EmployeeDisciplinaryReport" Association="DRdb.Store.EmployeeDisciplinaryReport">
       <End Role="Employee" EntitySet="Employees" />
-      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+      <End Role="DisciplinaryReport" EntitySet="DRs" />
     </AssociationSet>
     <AssociationSet Name="LocationDisciplinaryReport" Association="DRdb.Store.LocationDisciplinaryReport">
       <End Role="Location" EntitySet="Locations" />
-      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+      <End Role="DisciplinaryReport" EntitySet="DRs" />
     </AssociationSet>
     <AssociationSet Name="ViolationDisciplinaryReport" Association="DRdb.Store.ViolationDisciplinaryReport">
       <End Role="Violation" EntitySet="Violations" />
-      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+      <End Role="DisciplinaryReport" EntitySet="DRs" />
     </AssociationSet>
-    <AssociationSet Name="DisciplinaryReportDRInvestigation" Association="DRdb.Store.DisciplinaryReportDRInvestigation">
-      <End Role="DisciplinaryReport" EntitySet="DisciplinaryReports" />
+    <AssociationSet Name="DRDRInvestigation" Association="DRdb.Store.DRDRInvestigation">
+      <End Role="DR" EntitySet="DRs" />
       <End Role="DRInvestigation" EntitySet="DRInvestigations" />
     </AssociationSet>
     <AssociationSet Name="DRInvestigationDRHearing" Association="DRdb.Store.DRInvestigationDRHearing">
@@ -37,15 +37,15 @@
     <Key>
       <PropertyRef Name="DR_HEAR_CHIEF_ID" />
       <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
-      <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
-      <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-      <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+      <PropertyRef Name="DRInvestigationDRDR_REPORT_NUM" />
+      <PropertyRef Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" />
+      <PropertyRef Name="DRInvestigationDREmployeeEMP_ID" />
     </Key>
     <Property Name="DR_HEAR_CHIEF_ID" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DRInvestigationDR_INVEST_EMP_ID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" Type="int" Nullable="false" />
-    <Property Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRInvestigationDRDR_REPORT_NUM" Type="int" Nullable="false" />
+    <Property Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRInvestigationDREmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_HEAR_INM_PLEA" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_HEAR_WIT_REQ" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_HEAR_NO_REAPORTS" Type="nvarchar(max)" Nullable="false" />
@@ -66,14 +66,14 @@
   <EntityType Name="DRInvestigations">
     <Key>
       <PropertyRef Name="DR_INVEST_EMP_ID" />
-      <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-      <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-      <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+      <PropertyRef Name="DRDR_REPORT_NUM" />
+      <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+      <PropertyRef Name="DREmployeeEMP_ID" />
     </Key>
     <Property Name="DR_INVEST_EMP_ID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DisciplinaryReportDR_REPORT_NUM" Type="int" Nullable="false" />
-    <Property Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DisciplinaryReportEmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DRDR_REPORT_NUM" Type="int" Nullable="false" />
+    <Property Name="DRDR_FIRST_APPROVAL_EMP_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DREmployeeEMP_ID" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_INVEST_DATE" Type="datetime" Nullable="false" />
     <Property Name="DR_DATE_INVEST_COMP" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_TIME_INVEST_COMP" Type="nvarchar(max)" Nullable="false" />
@@ -85,7 +85,7 @@
     <Property Name="DR_INVEST_REJ_REASON" Type="nvarchar(max)" Nullable="false" />
     <Property Name="DR_INVEST_SUP_VOID" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="DisciplinaryReports">
+  <EntityType Name="DRs">
     <Key>
       <PropertyRef Name="DR_REPORT_NUM" />
       <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
@@ -146,7 +146,7 @@
   </EntityType>
   <Association Name="EmployeeDisciplinaryReport">
     <End Role="Employee" Type="DRdb.Store.Employees" Multiplicity="1" />
-    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DRs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
         <PropertyRef Name="EMP_ID" />
@@ -158,7 +158,7 @@
   </Association>
   <Association Name="LocationDisciplinaryReport">
     <End Role="Location" Type="DRdb.Store.Locations" Multiplicity="1" />
-    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DRs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Location">
         <PropertyRef Name="LOC_FAC_CODE" />
@@ -170,7 +170,7 @@
   </Association>
   <Association Name="ViolationDisciplinaryReport">
     <End Role="Violation" Type="DRdb.Store.Violations" Multiplicity="1" />
-    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="*" />
+    <End Role="DisciplinaryReport" Type="DRdb.Store.DRs" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Violation">
         <PropertyRef Name="VIO_CODE" />
@@ -180,19 +180,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="DisciplinaryReportDRInvestigation">
-    <End Role="DisciplinaryReport" Type="DRdb.Store.DisciplinaryReports" Multiplicity="1" />
+  <Association Name="DRDRInvestigation">
+    <End Role="DR" Type="DRdb.Store.DRs" Multiplicity="1" />
     <End Role="DRInvestigation" Type="DRdb.Store.DRInvestigations" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="DisciplinaryReport">
+      <Principal Role="DR">
         <PropertyRef Name="DR_REPORT_NUM" />
         <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
         <PropertyRef Name="EmployeeEMP_ID" />
       </Principal>
       <Dependent Role="DRInvestigation">
-        <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-        <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-        <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+        <PropertyRef Name="DRDR_REPORT_NUM" />
+        <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DREmployeeEMP_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -202,15 +202,15 @@
     <ReferentialConstraint>
       <Principal Role="DRInvestigation">
         <PropertyRef Name="DR_INVEST_EMP_ID" />
-        <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-        <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-        <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+        <PropertyRef Name="DRDR_REPORT_NUM" />
+        <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DREmployeeEMP_ID" />
       </Principal>
       <Dependent Role="DRHearing">
         <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
-        <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
-        <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-        <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+        <PropertyRef Name="DRInvestigationDRDR_REPORT_NUM" />
+        <PropertyRef Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" />
+        <PropertyRef Name="DRInvestigationDREmployeeEMP_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -237,8 +237,8 @@
             <End Role="Violation" EntitySet="Violations" />
             <End Role="DisciplinaryReport" EntitySet="DRs" />
           </AssociationSet>
-          <AssociationSet Name="DisciplinaryReportDRInvestigation" Association="DRdb.DisciplinaryReportDRInvestigation">
-            <End Role="DisciplinaryReport" EntitySet="DRs" />
+          <AssociationSet Name="DRDRInvestigation" Association="DRdb.DRDRInvestigation">
+            <End Role="DR" EntitySet="DRs" />
             <End Role="DRInvestigation" EntitySet="DRInvestigations" />
           </AssociationSet>
           <AssociationSet Name="DRInvestigationDRHearing" Association="DRdb.DRInvestigationDRHearing">
@@ -250,15 +250,15 @@
           <Key>
             <PropertyRef Name="DR_HEAR_CHIEF_ID" />
             <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
-            <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
-            <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-            <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
-          </Key>
+            <PropertyRef Name="DRInvestigationDRDR_REPORT_NUM" />
+            <PropertyRef Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" />
+            <PropertyRef Name="DRInvestigationDREmployeeEMP_ID" />
+            </Key>
           <Property Name="DR_HEAR_CHIEF_ID" Type="String" Nullable="false" />
           <Property Name="DRInvestigationDR_INVEST_EMP_ID" Type="String" Nullable="false" />
-          <Property Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" Type="Int32" Nullable="false" />
-          <Property Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
-          <Property Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" Type="String" Nullable="false" />
+          <Property Name="DRInvestigationDRDR_REPORT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DRInvestigationDREmployeeEMP_ID" Type="String" Nullable="false" />
           <Property Name="DR_HEAR_INM_PLEA" Type="String" Nullable="false" />
           <Property Name="DR_HEAR_WIT_REQ" Type="String" Nullable="false" />
           <Property Name="DR_HEAR_NO_REAPORTS" Type="String" Nullable="false" />
@@ -280,14 +280,14 @@
         <EntityType Name="DRInvestigation">
           <Key>
             <PropertyRef Name="DR_INVEST_EMP_ID" />
-            <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-            <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-            <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+            <PropertyRef Name="DRDR_REPORT_NUM" />
+            <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+            <PropertyRef Name="DREmployeeEMP_ID" />
           </Key>
           <Property Name="DR_INVEST_EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="DisciplinaryReportDR_REPORT_NUM" Type="Int32" Nullable="false" />
-          <Property Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
-          <Property Name="DisciplinaryReportEmployeeEMP_ID" Type="String" Nullable="false" />
+          <Property Name="DRDR_REPORT_NUM" Type="Int32" Nullable="false" />
+          <Property Name="DRDR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DREmployeeEMP_ID" Type="String" Nullable="false" />
           <Property Name="DR_INVEST_DATE" Type="DateTime" Nullable="false" />
           <Property Name="DR_DATE_INVEST_COMP" Type="String" Nullable="false" />
           <Property Name="DR_TIME_INVEST_COMP" Type="String" Nullable="false" />
@@ -298,7 +298,7 @@
           <Property Name="DR_INVEST_REJECT" Type="String" Nullable="false" />
           <Property Name="DR_INVEST_REJ_REASON" Type="String" Nullable="false" />
           <Property Name="DR_INVEST_SUP_VOID" Type="String" Nullable="false" />
-          <NavigationProperty Name="DisciplinaryReport" Relationship="DRdb.DisciplinaryReportDRInvestigation" FromRole="DRInvestigation" ToRole="DisciplinaryReport" />
+          <NavigationProperty Name="DR" Relationship="DRdb.DRDRInvestigation" FromRole="DRInvestigation" ToRole="DR" />
           <NavigationProperty Name="DRHearings" Relationship="DRdb.DRInvestigationDRHearing" FromRole="DRInvestigation" ToRole="DRHearing" />
         </EntityType>
         <EntityType Name="DR">
@@ -333,7 +333,7 @@
           <Property Name="LocationLOC_FAC_CODE" Type="String" Nullable="false" />
           <NavigationProperty Name="Violation" Relationship="DRdb.ViolationDisciplinaryReport" FromRole="DisciplinaryReport" ToRole="Violation" />
           <Property Name="ViolationVIO_CODE" Type="String" Nullable="false" />
-          <NavigationProperty Name="DRInvestigations" Relationship="DRdb.DisciplinaryReportDRInvestigation" FromRole="DisciplinaryReport" ToRole="DRInvestigation" />
+          <NavigationProperty Name="DRInvestigations" Relationship="DRdb.DRDRInvestigation" FromRole="DR" ToRole="DRInvestigation" />
           </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -403,19 +403,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DisciplinaryReportDRInvestigation">
-          <End Type="DRdb.DR" Role="DisciplinaryReport" Multiplicity="1" />
+        <Association Name="DRDRInvestigation">
+          <End Type="DRdb.DR" Role="DR" Multiplicity="1" />
           <End Type="DRdb.DRInvestigation" Role="DRInvestigation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DisciplinaryReport">
+            <Principal Role="DR">
               <PropertyRef Name="DR_REPORT_NUM" />
               <PropertyRef Name="DR_FIRST_APPROVAL_EMP_ID" />
               <PropertyRef Name="EmployeeEMP_ID" />
             </Principal>
             <Dependent Role="DRInvestigation">
-              <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-              <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-              <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+              <PropertyRef Name="DRDR_REPORT_NUM" />
+              <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DREmployeeEMP_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -425,15 +425,15 @@
           <ReferentialConstraint>
             <Principal Role="DRInvestigation">
               <PropertyRef Name="DR_INVEST_EMP_ID" />
-              <PropertyRef Name="DisciplinaryReportDR_REPORT_NUM" />
-              <PropertyRef Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-              <PropertyRef Name="DisciplinaryReportEmployeeEMP_ID" />
+              <PropertyRef Name="DRDR_REPORT_NUM" />
+              <PropertyRef Name="DRDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DREmployeeEMP_ID" />
             </Principal>
             <Dependent Role="DRHearing">
               <PropertyRef Name="DRInvestigationDR_INVEST_EMP_ID" />
-              <PropertyRef Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
-              <PropertyRef Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-              <PropertyRef Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+              <PropertyRef Name="DRInvestigationDRDR_REPORT_NUM" />
+              <PropertyRef Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" />
+              <PropertyRef Name="DRInvestigationDREmployeeEMP_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -448,9 +448,9 @@
         <MappingFragment StoreEntitySet="DRHearings">
           <ScalarProperty Name="DR_HEAR_CHIEF_ID" ColumnName="DR_HEAR_CHIEF_ID" />
           <ScalarProperty Name="DRInvestigationDR_INVEST_EMP_ID" ColumnName="DRInvestigationDR_INVEST_EMP_ID" />
-          <ScalarProperty Name="DRInvestigationDisciplinaryReportDR_REPORT_NUM" ColumnName="DRInvestigationDisciplinaryReportDR_REPORT_NUM" />
-          <ScalarProperty Name="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" ColumnName="DRInvestigationDisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-          <ScalarProperty Name="DRInvestigationDisciplinaryReportEmployeeEMP_ID" ColumnName="DRInvestigationDisciplinaryReportEmployeeEMP_ID" />
+          <ScalarProperty Name="DRInvestigationDRDR_REPORT_NUM" ColumnName="DRInvestigationDRDR_REPORT_NUM" />
+          <ScalarProperty Name="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" ColumnName="DRInvestigationDRDR_FIRST_APPROVAL_EMP_ID" />
+          <ScalarProperty Name="DRInvestigationDREmployeeEMP_ID" ColumnName="DRInvestigationDREmployeeEMP_ID" />
           <ScalarProperty Name="DR_HEAR_INM_PLEA" ColumnName="DR_HEAR_INM_PLEA" />
           <ScalarProperty Name="DR_HEAR_WIT_REQ" ColumnName="DR_HEAR_WIT_REQ" />
           <ScalarProperty Name="DR_HEAR_NO_REAPORTS" ColumnName="DR_HEAR_NO_REAPORTS" />
@@ -474,9 +474,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(DRdb.DRInvestigation)">
         <MappingFragment StoreEntitySet="DRInvestigations">
           <ScalarProperty Name="DR_INVEST_EMP_ID" ColumnName="DR_INVEST_EMP_ID" />
-          <ScalarProperty Name="DisciplinaryReportDR_REPORT_NUM" ColumnName="DisciplinaryReportDR_REPORT_NUM" />
-          <ScalarProperty Name="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" ColumnName="DisciplinaryReportDR_FIRST_APPROVAL_EMP_ID" />
-          <ScalarProperty Name="DisciplinaryReportEmployeeEMP_ID" ColumnName="DisciplinaryReportEmployeeEMP_ID" />
+          <ScalarProperty Name="DRDR_REPORT_NUM" ColumnName="DRDR_REPORT_NUM" />
+          <ScalarProperty Name="DRDR_FIRST_APPROVAL_EMP_ID" ColumnName="DRDR_FIRST_APPROVAL_EMP_ID" />
+          <ScalarProperty Name="DREmployeeEMP_ID" ColumnName="DREmployeeEMP_ID" />
           <ScalarProperty Name="DR_INVEST_DATE" ColumnName="DR_INVEST_DATE" />
           <ScalarProperty Name="DR_DATE_INVEST_COMP" ColumnName="DR_DATE_INVEST_COMP" />
           <ScalarProperty Name="DR_TIME_INVEST_COMP" ColumnName="DR_TIME_INVEST_COMP" />
@@ -492,7 +492,7 @@
     </EntitySetMapping>
     <EntitySetMapping Name="DRs">
       <EntityTypeMapping TypeName="IsTypeOf(DRdb.DR)">
-        <MappingFragment StoreEntitySet="DisciplinaryReports">
+        <MappingFragment StoreEntitySet="DRs">
           <ScalarProperty Name="DR_REPORT_NUM" ColumnName="DR_REPORT_NUM" />
           <ScalarProperty Name="DR_FIRST_APPROVAL_EMP_ID" ColumnName="DR_FIRST_APPROVAL_EMP_ID" />
           <ScalarProperty Name="EmployeeEMP_ID" ColumnName="EmployeeEMP_ID" />

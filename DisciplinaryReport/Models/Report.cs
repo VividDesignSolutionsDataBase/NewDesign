@@ -17,8 +17,8 @@ namespace DisciplinaryReport.Models
         public int DR_INM_FIRST_NAME { get; set; }
         public Status? Status { get; set; }
 
-        public virtual FormModel Form { get; set; }
-        public virtual EmployeeModel Employee { get; set; }
+        //public virtual FormModel Form { get; set; }
+        //public virtual EmployeeModel Employee { get; set; }
        
         
 
