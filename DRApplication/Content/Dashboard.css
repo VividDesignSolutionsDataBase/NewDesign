@@ -1,0 +1,88 @@
+﻿body {
+  margin: 0;
+  padding: 0;
+}
+#wrapper {
+  margin: 0 auto;
+  width: 960px;
+}
+#header-wrapper {
+}
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+#header {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  border: 1px solid black;
+}
+#menu-dash {
+  overflow: hidden;
+}
+#menu-dash ul {
+  margin: 0 auto;
+    padding: 0px;
+  list-style: none;
+  text-align: center;
+}
+#menu-dash li {
+  display: inline-block;
+}
+#menu-dash a {
+  padding: 0 40px;
+  line-height: 70px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration:solid;
+  text-align: center;
+  font-family: 'Varela Round',sans-serif;
+
+  
+}
+#menu-dash li.current_menu_item a {
+  color: darkgray;
+  text-decoration:solid;
+}
+#menu-dash a:hover {
+  border-left: 0px solid;
+  border-right: 0px solid;
+  text-decoration: solid;
+}
+#content {
+  height: 500px;
+  width: 700px;
+  margin: 0 auto;
+  border: 1px double black;
+  background: midnightblue;
+}
+#content > div {
+  background: black;
+  height: 210px;
+  width: 200px;
+  display: inline-block;
+  padding: 5px 9px;
+  margin-left: 8px;
+  margin-top: 20px;
+  border: 1px solid white;
+}
+#content div div:first-child {
+  height: 180px;
+  width: 190px;
+  margin-left:5px;
+  margin-top:5px;
+  color: white;
+  padding-left: 5px;
+  border: 1px solid grey;
+}
+#content div div:last-child {
+  height: 20px;
+  width: 190px;
+  margin-left: 5px;
+  color: white;
+  text-align: center;
+  letter-spacing: 6px;
+  font-size: 20px;
+  padding: 2px;
+}
