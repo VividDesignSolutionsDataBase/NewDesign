@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DRdb.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DRdbTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DRdb" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DRdbContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DRHearings" EntityType="DRdb.DRHearing" />
+          <EntitySet Name="DRInvestigations" EntityType="DRdb.DRInvestigation" />
+          <EntitySet Name="DRs" EntityType="DRdb.DR" />
+          <EntitySet Name="Locations" EntityType="DRdb.Location" />
+          <EntitySet Name="Violations" EntityType="DRdb.Violation" />
+          <EntitySet Name="Employees" EntityType="DRdb.Employee" />
+        </EntityContainer>
+        <EntityType Name="DRHearing">
+          <Property Name="DR_HEAR_CHIEF_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_PLEA" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_WIT_REQ" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_NO_REAPORTS" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_HEAR_DEC" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_APPEAL" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DAYS_DSC_CONF" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_WKS_LOSS_COMMIS" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_DAYS_LOSS_GAINTIME" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_REV_TENT_DEL_DATE" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_COMMENT" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_INSTRULES_ACK" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_COM_CHAIR_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_INM_WIT_ID" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_CHIEF_AGREE_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_HEAR_CHIEF_REDUCE_FLAG" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DRInvestigation">
+          <Property Name="DR_INVEST_EMP_ID" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_DATE_INVEST_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_TIME_INVEST_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_STATEMENT" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_COMP_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_VOID" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_APPROVE" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_REJECT" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_REJ_REASON" Type="String" Nullable="false" />
+          <Property Name="DR_INVEST_SUP_VOID" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DR">
+          <Key>
+            <PropertyRef Name="DR_REPORT_NUM" />
+          </Key>
+          <Property Name="DR_REPORT_NUM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DR_FIRST_APPROVAL_EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DR_INM_VIOLATION_CODE" Type="String" Nullable="false" />
+          <Property Name="DR_INM_LAST_NAME" Type="String" Nullable="false" />
+          <Property Name="DR_INM_FIRST_NAME" Type="String" Nullable="false" />
+          <Property Name="DR_INM_RACE" Type="String" Nullable="false" />
+          <Property Name="DR_INM_SEX" Type="String" Nullable="false" />
+          <Property Name="DR_INM_AGE" Type="String" Nullable="false" />
+          <Property Name="DR_FACILITY" Type="String" Nullable="false" />
+          <Property Name="DR_FAC_LOCATION" Type="String" Nullable="false" />
+          <Property Name="DR_INM_CONT_LOG" Type="String" Nullable="false" />
+          <Property Name="DR_INCIDENT_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DR_INCIDENT_TIME" Type="Time" Nullable="false" />
+          <Property Name="DR_INCIDENT_LOCATION" Type="String" Nullable="false" />
+          <Property Name="DR_STATE_FACTS" Type="String" Nullable="false" />
+          <Property Name="DR_DATE_INTISUB_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_INITSUB_COMP" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_APPROVAL_FLAG" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_REJECT_REASON" Type="String" Nullable="false" />
+          <Property Name="DR_FIRST_REJECT_FLAG" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LOC_FAC_CODE" />
+          </Key>
+          <Property Name="LOC_FAC_CODE" Type="String" Nullable="false" />
+          <Property Name="LOC_FAC_DESC" Type="String" Nullable="false" />
+          <Property Name="LOC_CODE" Type="String" Nullable="false" />
+          <Property Name="LOC_DESC" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Violation">
+          <Key>
+            <PropertyRef Name="VIO_CODE" />
+          </Key>
+          <Property Name="VIO_CODE" Type="String" Nullable="false" />
+          <Property Name="VIO_SHORT_DESC" Type="String" Nullable="false" />
+          <Property Name="VIO_LONG_DESC" Type="String" Nullable="false" />
+          <Property Name="VIO_R_FLAG" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EMP_ID" />
+          </Key>
+          <Property Name="EMP_ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="EMP_PASSW" Type="String" Nullable="false" />
+          <Property Name="EMP_LAST_NAME" Type="String" Nullable="false" />
+          <Property Name="EMP_FIRST_NAME" Type="String" Nullable="false" />
+          <Property Name="EMP_ROLE" Type="String" Nullable="false" />
+          <Property Name="EMP_LOCATION" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DRdb" />
+        <Alias Key="Target" Value="DRdb.Store" />
+        <EntityContainerMapping CdmEntityContainer="DRdbContainer" StorageEntityContainer="DRdbTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

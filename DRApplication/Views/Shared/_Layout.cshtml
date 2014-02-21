@@ -84,8 +84,15 @@
             <li class="icn_edit_article">@Html.ActionLink("Edit Report", "Index", "Home")</li>
             <li class="icn_categories">@Html.ActionLink("Reports", "Index", "Home")</li>
         </ul>
+
+            @if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("Chief"))
+                {
+                    
         <h3>Admin</h3>
         <ul class="toggle">
+            
             <li class="icn_add_user">@Html.ActionLink("Add  New User", "Index", "Home")</li>
             <li class="icn_view_users">@Html.ActionLink("View Users", "Index", "Home")</li>
             <li class="icn_profile">@Html.ActionLink("Your Profile", "Index", "Home")</li>
@@ -93,6 +100,23 @@
             <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
             <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>
         </ul>
+                
+            }  
+            else
+            {
+                    
+        <h3>Officer</h3>
+        <ul class="toggle">
+            
+            <li class="icn_profile">@Html.ActionLink("Your Profile", "Index", "Home")</li>
+            <li class="icn_settings">@Html.ActionLink("Options", "Index", "Home")</li>
+            <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
+            <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>                    
+                     
+          </ul>
+                
+            }
+           }    
 
         <footer>
             <hr />

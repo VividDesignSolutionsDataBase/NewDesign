@@ -1,16 +1,23 @@
 ﻿@model DRApplication.Models.LoginModel
 
-<link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Progress";
+    ViewBag.Title = "Login";
     Layout = null;
 }
 
+<link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
 
-<h1 style="text-align:center">Welcome to Disciplinary Report Application</h1>
+
+<h1 style="text-align:center"></h1>
 <div class="container">
     <section id="content">
-        <form action="">
+       
+     <section id="loginForm">
+
+            @using (Html.BeginForm("Login", "Account")) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+                
             <h1>Login Form</h1>
             <div>
 
@@ -28,7 +35,8 @@
                 <div>
                     <input type="submit" value="Log in" />
                 </div>
-        </form>
+        </section>
+            }
                 <div class="button"><p style="text-align:center">&copy; @DateTime.Now.Year - VividDesign Solutions</p>
 </div>
 	</section><!-- content -->
