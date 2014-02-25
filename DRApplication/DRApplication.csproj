@@ -196,7 +196,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DR.cs" />
+    <Compile Include="Models\DRdbContainer.cs" />
+    <Compile Include="Models\DRHEARING.cs" />
+    <Compile Include="Models\DRINVESTIGATION.cs" />
+    <Compile Include="Models\EMPLOYEE.cs" />
     <Compile Include="Models\FormModels.cs" />
+    <Compile Include="Models\HOUSINGLOCATION.cs" />
+    <Compile Include="Models\INCIDENTLOCATION.cs" />
+    <Compile Include="Models\LOCATION.cs" />
+    <Compile Include="Models\VIOLATION.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,15 +268,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="DRdb.edmx.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="DRdb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DRdb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DRdb.edmx.diagram">
-      <DependentUpon>DRdb.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\7AF2Qzt.png" />
     <Content Include="Images\8bcLQqF.png" />

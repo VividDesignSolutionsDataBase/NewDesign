@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Globalization;
-using System.Web.Security;
 
 namespace DRApplication.Models
 {
@@ -15,16 +11,15 @@ namespace DRApplication.Models
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<EMPLOYEE> EMPLOYEE { get; set; }
     }
 
     [Table("UserProfile")]
     public class UserProfile
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public string UserName { get; set; }
+        //public int UserId { get; set; }
+        public int EMP_ID { get; set; } //Employee UserName
     
     }
 
@@ -50,13 +45,13 @@ namespace DRApplication.Models
     public class LoginModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "Employee ID")]
+        public int EMP_ID { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string EMP_PASSW { get; set; }
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
@@ -65,14 +60,14 @@ namespace DRApplication.Models
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        [Display(Name = "Employee ID")]
+        public int EMP_ID { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string EMP_PASSW { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
@@ -80,10 +75,5 @@ namespace DRApplication.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class ExternalLogin
-    {
-        public string Provider { get; set; }
-        public string ProviderDisplayName { get; set; }
-        public string ProviderUserId { get; set; }
-    }
+    
 }
