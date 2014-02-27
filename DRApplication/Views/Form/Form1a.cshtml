@@ -4,48 +4,46 @@
     ViewBag.Title = "DR Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
-    <div class="prefix_7 grid_7 alpha">
-        <div id="formheader">
-            <h3>OFFICE OF THE SHERIFF</h3>
-            <h3>DEPARTMENT OF CORRECTIONS</h3>
-            <h3>DISCIPLINARY REPORT</h3>
-            <br />
+<form action="#" method="post">
+    <div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
+        <div class="prefix_7 grid_7 alpha">
+            <div id="formheader">
+                <h3>OFFICE OF THE SHERIFF</h3>
+                <h3>DEPARTMENT OF CORRECTIONS</h3>
+                <h3>DISCIPLINARY REPORT</h3>
+                <br />
+            </div> <!--end formheader-->
+        </div>
+        <div style="top:35px;" class="grid_7 omega">
+            <p style="top:7px; text-align:right;" class="grid_2 alpha prefix_1">@Html.Label("REPORT#: ")</p>
+            <p class="grid_3 suffix_1 omega"><input id="drReportNum" type="text" /></p>
         </div>
     </div>
-    <div style="top:35px;" class="grid_7 omega">
-        <p style="top:7px; text-align:right;" class="grid_2 alpha prefix_1">@Html.Label("REPORT#: ")</p>
-        <p class="grid_3 suffix_1 omega"><input id="report" type="text" /></p>
+    <div class="grid_21 container_21 clear-fix" style="background: lightblue;">
+        <div style="top:9px;" class="grid_2 alpha omega">
+            <p>@Html.Label(" INMATE'S:")</p>
+        </div>
+        <div class="grid_7">
+            <p style="top:8px; text-align:right;" class="grid_3 alpha omega">@Html.Label("LAST NAME: ")</p>
+            <p class="grid_4 omega"><input id="drInmLastName" type="text" /></p>
+        </div>
+        <div class="grid_7">
+            <p style="top:8px; text-align:right;" class="grid_3 alpha">@Html.Label("FIRST NAME: ")</p>
+            <p class="grid_4 omega"><input id="drInmFirstName" type="text" /></p>
+        </div>
+        <div class="grid_5 omega">
+            <p style="top:8px; text-align:right;" class="grid_1 alpha">@Html.Label("JAIL# ")</p>
+            <p class="grid_4 omega"><input id="DrInmJailNum" type="text" /></p>
+        </div>
     </div>
-</div>
-
-<div class="grid_21 container_21 clear-fix" style="background: lightblue;">
-    <div style="top:9px;" class="grid_2 alpha omega">
-        <p>@Html.Label(" INMATE'S:")</p>
-    </div>
-    <div class="grid_7">
-        <p style="top:8px; text-align:right;" class="grid_3 alpha omega">@Html.Label("LAST NAME: ")</p>
-        <p class="grid_4 omega"><input id="LName" type="text" /></p>
-    </div>
-    <div class="grid_7">
-        <p style ="top:8px; text-align:right;" class="grid_3 alpha">@Html.Label("FIRST NAME: ")</p>
-        <p class="grid_4 omega"><input id="FName" type="text" /></p>
-    </div>
-    <div class="grid_5 omega">
-           <p style="top:8px; text-align:right;"class="grid_1 alpha">@Html.Label("JAIL# ")</p>
-           <p class="grid_4 omega"><input id="JailNo" type="text" /></p>
-    </div>
-</div>
-
-<div class="grid_21 container_21" style="background: lightblue;">
-    <div style="text-align:right; top:7px;" class="grid_1 alpha">@Html.Label("RSA: ")</div>
-    <div class="grid_2"><input id="race" type="text" /></div>
-    <div id="facility" class="grid_2 prefix_1"><label for="facility">FACILITY:</label></div>
-    <div class="grid_5" style="font-size: 15px;top:2px;">@Html.CheckBox("PDF") PDF @Html.CheckBox("MCC") MCC @Html.CheckBox("CTC") CTC</div>
-    <div style="top:7px;" class="grid_4">@Html.Label("HOUSING LOCATION:")</div>
-    <div style="top:7px;" class="grid_2">
-        @Html.DropDownList("Location", new List<SelectListItem>
+    <div class="grid_21 container_21" style="background: lightblue;">
+        <div style="text-align:right; top:7px;" class="grid_1 alpha">@Html.Label("RSA: ")</div>
+        <div class="grid_2"><input id="drInmRace" type="text" /><input id="drInmSex" type="text" /><input id="drInmAge" type="text" /></div>
+        <div id="facility" class="grid_2 prefix_1"><label for="facility">FACILITY:</label></div>
+        <div class="grid_5" style="font-size: 15px;top:2px;">@Html.CheckBox("PDF") PDF @Html.CheckBox("MCC") MCC @Html.CheckBox("CTC") CTC</div>
+        <div style="top:7px;" class="grid_4">@Html.Label("HOUSING LOCATION:")</div>
+        <div style="top:7px;" class="grid_2">
+            @Html.DropDownList("Location", new List<SelectListItem>
 {
     new SelectListItem { Text = " ",Value = "0",Selected = true},
     new SelectListItem { Text = "Location 1",Value = "1"},
@@ -55,21 +53,20 @@
     new SelectListItem { Text = "Location 5",Value = "5"},
     new SelectListItem { Text = "Other",Value = "6"},
 }, "Locations")
+        </div>
+        <div style="display: none;" class="grid_2 prefix_1 omega">@Html.TextBox("other")</div>
     </div>
-    <div style="display: none;" class="grid_2 prefix_1 omega">@Html.TextBox("other")</div>
-</div>
-
-<div style="background: lightblue; border: 1px groove black;" class="grid_21 container_21 clear-fix">
-    <div style="top:-15px;" class="grid_14 alpha omega clear-fix">
-        <div class="grid_1 alpha">
-            <h3 style="position:relative;top:-5px;">I.</h3>
-        </div>
-        <div class="grid_13 alpha omega clear-fix">
-            <h3>Alleged Violation(s) - Violation Number(s)</h3>
-        </div>
-        <div style="top:20px;" class="grid_21 alpha omega">
-            <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
-                @Html.Label("1st Violation")
+    <div style="background: lightblue; border: 1px groove black;" class="grid_21 container_21 clear-fix">
+        <div style="top:-15px;" class="grid_14 alpha omega clear-fix">
+            <div class="grid_1 alpha">
+                <h3 style="position:relative;top:-5px;">I.</h3>
+            </div>
+            <div class="grid_13 alpha omega clear-fix">
+                <h3>Alleged Violation(s) - Violation Number(s)</h3>
+            </div>
+            <div style="top:20px;" class="grid_21 alpha omega">
+                <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
+                    @Html.Label("1st Violation")
                     @Html.DropDownList("Violaton", new List<SelectListItem>
                         {
                             new SelectListItem { Text = " ",Value = "0",Selected = true},
@@ -79,10 +76,10 @@
                             new SelectListItem { Text = "1-4: A short summary",Value = "4"},
                             new SelectListItem { Text = "1-5: A short summary",Value = "5"},
                         }, "1st Violation")
-            </div>
-            <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
-                @Html.Label("2nd Violation")
-                        @Html.DropDownList("Violaton", new List<SelectListItem>
+                </div>
+                <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
+                    @Html.Label("2nd Violation")
+                    @Html.DropDownList("Violaton", new List<SelectListItem>
                         {
                             new SelectListItem { Text = " ",Value = "0",Selected = true},
                             new SelectListItem { Text = "1-1: A short summary",Value = "1"},
@@ -91,10 +88,10 @@
                             new SelectListItem { Text = "1-4: A short summary",Value = "4"},
                             new SelectListItem { Text = "1-5: A short summary",Value = "5"},
                         }, "2nd Violation")
-            </div>
-            <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
-                @Html.Label("3rd Violation")
-                        @Html.DropDownList("Violaton", new List<SelectListItem>
+                </div>
+                <div class="grid_19 prefix_1 suffix_1 violation alpha omega">
+                    @Html.Label("3rd Violation")
+                    @Html.DropDownList("Violaton", new List<SelectListItem>
                         {
                             new SelectListItem { Text = " ",Value = "0",Selected = true},
                             new SelectListItem { Text = "1-1: A short summary",Value = "1"},
@@ -103,26 +100,26 @@
                             new SelectListItem { Text = "1-4: A short summary",Value = "4"},
                             new SelectListItem { Text = "1-5: A short summary",Value = "5"},
                         }, "3rd Violation")
+                </div>
             </div>
         </div>
-    </div>
-    <div style="top: -20px;" class="grid_7 alpha omega clear-fix">
-        <div class="grid_6 alpha">
-            <h5 style="text-align:right">@Html.Label("DR added to Inmate Contact Log ")</h5>
-    </div>
-        <div style="top:5px;" class="grid_1 omega clear-fix">
-            <p><input id="ContactLog" type="checkbox" /></p>
+        <div style="top: -20px;" class="grid_7 alpha omega clear-fix">
+            <div class="grid_6 alpha">
+                <h5 style="text-align:right">@Html.Label("DR added to Inmate Contact Log ")</h5>
+            </div>
+            <div style="top:5px;" class="grid_1 omega clear-fix">
+                <p><input id="ContactLog" type="checkbox" /></p>
+            </div>
         </div>
-    </div>
-    <div style="top:10px;" class="grid_14 alpha">
-        <p style="text-indent:10px; font-size:15px;">Statement of facts: State fully the exact facts and circumstances of the alleged violation:</p>
-    </div>
-    <div style="top:25px;" class="grid_7">
-        <div style="top:-15px;" class="grid_3">
-            <p style="text-indent:10px; font-size:15px;">Date of Incident:</p>
+        <div style="top:10px;" class="grid_14 alpha">
+            <p style="text-indent:10px; font-size:15px;">Statement of facts: State fully the exact facts and circumstances of the alleged violation:</p>
         </div>
-        <div class="grid_1">
-            @Html.DropDownList("Day", new List<SelectListItem>
+        <div style="top:25px;" class="grid_7">
+            <div style="top:-15px;" class="grid_3">
+                <p style="text-indent:10px; font-size:15px;">Date of Incident:</p>
+            </div>
+            <div class="grid_1">
+                @Html.DropDownList("Day", new List<SelectListItem>
                 {
                     new SelectListItem { Text = "1",Value = "1",Selected = true},
                     new SelectListItem { Text = "2",Value = "2"},
@@ -156,9 +153,9 @@
                     new SelectListItem { Text = "30",Value = "30"},
                     new SelectListItem { Text = "31",Value = "31"},
                 }, "Day")
-        </div>
-        <div class="grid_1">
-            @Html.DropDownList("Month", new List<SelectListItem>
+            </div>
+            <div class="grid_1">
+                @Html.DropDownList("Month", new List<SelectListItem>
                 {
                     new SelectListItem { Text = "Jan ",Value = "1",Selected = true},
                     new SelectListItem { Text = "Feb ",Value = "2"},
@@ -173,9 +170,9 @@
                     new SelectListItem { Text = "Nov ",Value = "11"},
                     new SelectListItem { Text = "Dec ",Value = "12"},
                 }, "Month")
-        </div>
-        <div class="grid_1">
-            @Html.DropDownList("Year", new List<SelectListItem>
+            </div>
+            <div class="grid_1">
+                @Html.DropDownList("Year", new List<SelectListItem>
                 {
                     new SelectListItem { Text = "2010",Value = "1"},
                     new SelectListItem { Text = "2011",Value = "2"},
@@ -192,47 +189,47 @@
                     new SelectListItem { Text = "2022",Value = "13"},
                     new SelectListItem { Text = "2023",Value = "14"},
                 }, "Year")
+            </div>
+        </div>
+        <div class="grid_21">
+            <div class="prefix_8 grid_3 alpha">
+                <p style="font-size:15px; position: relative;top:10px;text-align:right;">Time of incident</p>
+            </div>
+            <div class="grid_2">
+                <p style="font-size:15px;"><input id="IncidentTime" type="text" size="7" /></p>
+            </div>
+            <div class="grid_4">
+                <p style="font-size:15px; position: relative;top:10px; text-align:right;">Location of incident</p>
+            </div>
+            <div class="grid_4 omega">
+                <p><input id="IncidentLoc" type="text" size="10" /></p>
+            </div>
+        </div><!--end incident row-->
+        <div class="grid_21 container_21">
+            <div class="prefix_1 grid_19 suffix_1 alpha omega">
+                <textarea id="TextArea1" rows="5" cols="840"></textarea>
+            </div>
+        </div><!--textarea and submit button-->
+        <div class="grid_21 container_21 clear-fix">
+            <div class="prefix_1 center grid_3 alpha">
+                <p><input id="RepDate" type="text" /></p>
+                <p style="position:relative;top:-12px;">Date Completed</p>
+            </div>
+            <div class="prefix_1 center grid_3">
+                <p><input id="RepTime" type="text" /></p>
+                <p style="position:relative;top:-12px;">Time Completed</p>
+            </div>
+            <div class="prefix_1 center grid_5 suffix_6 omega">
+                <p><input id="RepStaffSig1" type="text" /></p>
+                <p style="position:relative;top:-12px;">Reporting Staff Signature/ID#</p>
+            </div>
         </div>
     </div>
-    <div class="grid_21">
-        <div class="prefix_8 grid_3 alpha">
-            <p style="font-size:15px; position: relative;top:10px;text-align:right;">Time of incident</p>
-        </div>
-        <div class="grid_2">
-            <p style="font-size:15px;"><input id="IncidentTime" type="text" size="7" /></p>
-        </div>
-        <div class="grid_4">
-            <p style="font-size:15px; position: relative;top:10px; text-align:right;">Location of incident</p>
-        </div>
-        <div class="grid_4 omega">
-            <p><input id="IncidentLoc" type="text" size="10"/></p>
-        </div>
-    </div><!--end incident row-->
-    <div class="grid_21 container_21">
-        <div class="prefix_1 grid_19 suffix_1 alpha omega">
-            <textarea id="TextArea1" rows="5" cols="840"></textarea> 
-        </div>
-    </div><!--textarea and submit button-->
-    <div class="grid_21 container_21 clear-fix">
-        <div class="prefix_1 center grid_3 alpha">
-            <p><input id="RepDate" type="text" /></p>
-            <p style="position:relative;top:-12px;">Date Completed</p>
-        </div>
-        <div class="prefix_1 center grid_3">
-            <p><input id="RepTime" type="text" /></p>
-            <p style="position:relative;top:-12px;">Time Completed</p>
-        </div>
-        <div class="prefix_1 center grid_5 suffix_6 omega">
-            <p><input id="RepStaffSig1" type="text" /></p>
-            <p style="position:relative;top:-12px;">Reporting Staff Signature/ID#</p>
-        </div>
-    </div>   
-</div>
-<div class="grid_21 container_21" style="background:lightblue;">
-    <br />
-    <div class="prefix_9 grid_3 suffix_9 alpha omega">
-       
-         <p><input id="DR2b" type="submit" value="Submit Initial Report" style="background: lightgreen;" /></p>
-    </div>
-</div>
+    <div class="grid_21 container_21" style="background:lightblue;">
+        <br />
+        <div class="prefix_9 grid_3 suffix_9 alpha omega">
 
+            <p><input id="DR2b" type="submit" value="Submit Initial Report" style="background: lightgreen;" /></p>
+        </div>
+    </div>
+</form>
