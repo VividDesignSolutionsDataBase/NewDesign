@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EFMembership</id>
+    <version>2.0</version>
+    <title>Entity Framework Membership Provider</title>
+    <authors>Omid Mafakher</authors>
+    <owners>Omid Mafakher</owners>
+    <licenseUrl>http://efmembership.codeplex.com/license</licenseUrl>
+    <projectUrl>http://efmembership.codeplex.com/</projectUrl>
+    <iconUrl>http://download.codeplex.com/Download?ProjectName=efmembership&amp;DownloadId=153076&amp;Build=18365</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Entity Framework Membership Provider
+With your OPTIONAL database design
+Manage the Roles and User Accounts.
+1.AspNet Sql database included.
+2.Default database design included.
+3.Old version included.
+4. AND YOUR DATABASE.</description>
+    <releaseNotes>In this version you can change the database design or if already you have a application. you can use this membership provider with your database design</releaseNotes>
+    <copyright>OmidID.com</copyright>
+    <tags>ADO.NET Ado.net entity ASP.NET ASP.NET MVC C# C# 4.0 Custom Provider Entity Framework Membership Membership Provider MembershipProvider MVC MVC 2 VB.NET wcf</tags>
+    <references>
+      <reference file="OmidID.Web.Security.EFMembershipProvider.dll" />
+    </references>
+  </metadata>
+</package>

@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using DRApplication.Models;
+
 
     public partial class EMPLOYEE
     {
@@ -11,7 +13,8 @@
         }
 
         public int EMP_ID { get; set; }
-        public string EMP_PASSW { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
         public string EMP_LAST_NAME { get; set; }
         public string EMP_FIRST_NAME { get; set; }
         public string EMP_ROLE { get; set; }

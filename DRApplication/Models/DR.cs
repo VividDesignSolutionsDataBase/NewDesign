@@ -1,9 +1,9 @@
-﻿namespace DRApplication
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-    public partial class DR
+namespace DRApplication.Models
+{
+    public class DR
     {
         public int DR_REPORT_NUM { get; set; }
         public int DR_FIRST_APPROVAL_EMP_ID { get; set; }
@@ -29,9 +29,10 @@
         public Nullable<System.TimeSpan> DR_TIME_INIT_SUBMISSION_COMP { get; set; }
         public int EmployeeEMP_ID { get; set; }
         public string ViolationVIO_CODE { get; set; }
-
+    
         public virtual DRINVESTIGATION DRINVESTIGATION { get; set; }
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual VIOLATION VIOLATION { get; set; }
     }
 }
+

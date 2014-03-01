@@ -1,5 +1,6 @@
 ﻿namespace DRApplication
 {
+    using DRApplication.Models;
     using System;
     using System.Collections.Generic;
 

@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
+﻿using DRApplication.Models;
+using Microsoft.Web.WebPages.OAuth;
+using System;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using DRApplication.Filters;
-using DRApplication.Models;
 
 namespace DRApplication.Controllers
 {
-    [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
         // GET: /Account/Login
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -33,31 +26,33 @@ namespace DRApplication.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public ActionResult Login(Models.LoginModel user)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.EMP_ID, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
-                return RedirectToLocal(returnUrl);
+                if (user.IsValid(user.UserName, user.Password))
+                {
+                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Login data is incorrect!");
+                }
             }
-
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            return View(model);
+            return View(user);
         }
+
 
         //
         // POST: /Account/LogOff
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-
+            FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
         }
 
-        //
+                //
         // GET: /Account/Register
 
         [AllowAnonymous]
@@ -70,57 +65,36 @@ namespace DRApplication.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(Models.RegisterModel user)     
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                try
+                using (var db = new JSO())
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Manage", "Account");
-                }
-                catch (MembershipCreateUserException e)
-                {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    var crypto = new SimpleCrypto.PBKDF2();
+
+                    var encrpPass = crypto.Compute(user.Password);
+
+                    var sysUser = db.EMPLOYEEs.Create();
+
+                  
+                    sysUser.USERNAME = user.UserName;
+                    sysUser.PASSWORD = encrpPass;
+                    Guid USERNAME = Guid.NewGuid();
+
+                    db.EMPLOYEEs.Add(sysUser);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
                 }
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // POST: /Account/Disassociate
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Disassociate(string provider, string providerUserId)
-        {
-            string ownerAccount = OAuthWebSecurity.GetUserName(provider, providerUserId);
-            ManageMessageId? message = null;
-
-            // Only disassociate the account if the currently logged in user is the owner
-            if (ownerAccount == User.Identity.Name)
+            else
             {
-                // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
-                {
-                    bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-                    if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
-                    {
-                        OAuthWebSecurity.DeleteAccount(provider, providerUserId);
-                        scope.Complete();
-                        message = ManageMessageId.RemoveLoginSuccess;
-                    }
-                }
+                ModelState.AddModelError("", " Login Data is Incorrect.");
             }
-
-            return RedirectToAction("Manage", new { Message = message });
+            return View();
         }
+   
 
         //
         // GET: /Account/Manage
@@ -154,7 +128,7 @@ namespace DRApplication.Controllers
                     bool changePasswordSucceeded;
                     try
                     {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.EMP_PASSW);
+                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                     }
                     catch (Exception)
                     {
@@ -185,7 +159,7 @@ namespace DRApplication.Controllers
                 {
                     try
                     {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.EMP_PASSW);
+                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     catch (Exception)
@@ -199,7 +173,13 @@ namespace DRApplication.Controllers
             return View(model);
         }
 
+
+
+
         
+
+
+
 
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)

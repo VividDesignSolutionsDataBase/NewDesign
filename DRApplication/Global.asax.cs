@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using WebMatrix.Data;
+using WebMatrix.WebData;
 
 namespace DRApplication
 {
@@ -24,6 +27,7 @@ namespace DRApplication
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
         }
         public void Session_Start(object sender, EventArgs e)
         {
@@ -38,6 +42,8 @@ namespace DRApplication
             }
 
         }
+
+
 
     }
 

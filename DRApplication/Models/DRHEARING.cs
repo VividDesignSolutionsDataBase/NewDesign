@@ -1,10 +1,11 @@
-﻿namespace DRApplication
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace DRApplication.Models
+{
     public partial class DRHEARING
     {
+        [Key]
         public int DRInvestigationDRDR_REPORT_NUM { get; set; }
         public int DR_HEAR_CHIEF_ID { get; set; }
         public string DR_HEAR_INM_PLEA { get; set; }

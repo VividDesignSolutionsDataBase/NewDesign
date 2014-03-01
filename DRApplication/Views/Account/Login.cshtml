@@ -1,49 +1,50 @@
 ﻿@model DRApplication.Models.LoginModel
 
+   
 @{
     ViewBag.Title = "Login";
     Layout = null;
 }
 
-<link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
-
+ @using (Html.BeginForm()) {
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary()
 
 <h1 style="text-align:center"></h1>
-<div class="container">
-    <section id="content">
-       
-     <section id="loginForm">
 
-            @using (Html.BeginForm("Login", "Account")) {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-                
-            <h1>Login Form</h1>
-            <div>
+  <div class="container">
+      <fieldset id="content">
+          <legend>Login Form</legend>
+          <div id="loginForm">
 
-                @Html.TextBoxFor(m => m.UserName, new { placeholder = "User Name" })
-                @Html.ValidationMessageFor(m => m.UserName)
+              <div>
 
-            </div>
-                    <div>
+                  @Html.TextBoxFor(u => u.UserName, new { placeholder = "User Name" })
+                  @Html.ValidationMessageFor(u => u.UserName)
 
-                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
-                        @Html.ValidationMessageFor(m => m.Password)
+              </div>
+              <div>
 
-                    </div>
+                  @Html.PasswordFor(p => p.Password, new { placeholder = "Password" })
+                  @Html.ValidationMessageFor(p => p.Password)
 
-                <div>
-                    <input type="submit" value="Log in" />
-                </div>
-        </section>
-            }
-                <div class="button"><p style="text-align:center">&copy; @DateTime.Now.Year - VividDesign Solutions</p>
-</div>
-	</section><!-- content -->
+              </div>
 
- </div>
+              <div>
+                  <input type="submit" value="Log In" />
+              </div>
+          </div>
+          <div class="button">
+              <p style="text-align: center">&copy; @DateTime.Now.Year - VividDesign Solutions</p>
+          </div>
+
+      </fieldset><!-- content -->
+    </div>
+
 <footer>
     <p></p>
 </footer>
-
+ }
  
+
+<link rel="stylesheet" type="text/css" href="~/Content/Login.css" />
