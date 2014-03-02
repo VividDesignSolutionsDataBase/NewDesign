@@ -4,7 +4,7 @@
 }
 #wrapper {
   margin: 0 auto;
-  width: 960px;
+  
 }
 #header-wrapper {
 }
@@ -55,7 +55,7 @@
   width: 700px;
   margin: 0 auto;
   border: 1px double black;
-  background: midnightblue;
+  background: gray;
 }
 #content > div {
   background: black;

@@ -8,11 +8,7 @@
     <link type="text/css" rel="stylesheet" href="~/Content/layout.css" media="screen" />
     <link type="text/css" rel="stylesheet" href="~/Content/ie.css" media="screen" />
 
-    <script src="Scripts/hideshow.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.tablesorter.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="Scripts/jquery.equalHeight.js"></script>
-
-
+   
     <meta name="viewport" content="width=device-width" />
 
 </head>
@@ -31,6 +27,9 @@
 
         </div>
 
+
+
+
         <div class="breadcrumbs_container">
             <article class="breadcrumbs">
                 <a href="Home/Index.cshtml">DR Application</a> <div class="breadcrumb_divider"></div>
@@ -38,40 +37,11 @@
             </article>
         </div>
     </section><!-- end of secondary bar -->
-    <!--
-        <div>
-            <div class="float-left">
-                <img class="site-title" src="~/Images/Logo.jpg" width="509" height="100" />
-            </div>
-            <div class="float-right">
-                <section id="login">
-                    @Html.Partial("_LoginPartial")
-                </section>
-                <nav>
-                    <ul id="menu">
-                        @if (Request.IsAuthenticated)
-                        {
-                            if (User.IsInRole("Chief"))
-                            {
-                                <ul class="SubMenuItem">
-                                    <li>@Html.ActionLink("Administrator", "Index", "Home")</li>
-                                    <li>@Html.ActionLink("Create Report", "DR", "Home")</li>
-                                    <li>@Html.ActionLink("Search", "Index", "Inmate")</li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <ul class="SubMenuItem">
-                                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                                </ul>
-                            }
-                        }
-                    </ul>
-                </nav>
-            </div>
-        </div>
 
-        -->
+
+
+
+
 
     <aside id="sidebar">
         <form class="quick_search">
@@ -100,9 +70,9 @@
             <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
             <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>
         </ul>
-                
-            }  
-            else
+            
+            }
+                if (User.IsInRole("Officer,Chief"))
             {
                     
         <h3>Officer</h3>
@@ -114,9 +84,19 @@
             <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>                    
                      
           </ul>
-                
             }
+            
+            //}
+            //else 
+            //{
+            //    //return RedirectTAction("Login", "Account");
+            //        FormsAuthentication.RedirectToLoginPage();
+            //    }
            }    
+
+
+
+
 
         <footer>
             <hr />
@@ -126,13 +106,12 @@
     </aside><!-- end of sidebar -->
 
 
-    <div id="body">
-        @RenderSection("featured", required: false)
-
-        <section id="main" class="column">
-            @RenderBody()
-        </section>
-    </div>
+    <div id="main" class="column">
+          @RenderSection("featured", required: false)
+            <section style="flex-align:baseline">
+                @RenderBody()
+            </section>
+   </div>
 
 
 

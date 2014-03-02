@@ -1,9 +1,8 @@
-﻿namespace DRApplication
-{
-    using DRApplication.Models;
-    using System;
-    using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
+namespace DRApplication.Models
+{
     public partial class DRINVESTIGATION
     {
         public int DRDR_REPORT_NUM { get; set; }
@@ -20,7 +19,6 @@
         public string DR_INVEST_REJ_REASON { get; set; }
         public string DR_INVEST_SUP_VOID_FLAG { get; set; }
         public int DR_INVEST_SUP_APPROVE_EMP_ID { get; set; }
-
         public virtual DR DR { get; set; }
         public virtual DRHEARING DRHEARING { get; set; }
     }

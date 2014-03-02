@@ -1,15 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
+using System.Data.SqlClient;
 
 
 namespace DRApplication.Models
 {
     public class UsersContext : DbContext
     {
-        public UsersContext()
-            : base("DRdb")
+        public UsersContext(): base("JSOContext")
         {
         }
 
@@ -26,8 +26,11 @@ namespace DRApplication.Models
         [StringLength(25)]
         [Display(Name = "UserName")]
         public string UserName { get; set; } //Employee UserName
+       
+        public string Role { get; set; } //Employee Role
 
     }
+
 
     public class LocalPasswordModel
     {
@@ -61,30 +64,21 @@ namespace DRApplication.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-
-
-        public bool IsValid(string UserName, string Password)
+        public bool IsValid(string _username, string _pwd)
         {
-            var crypto = new SimpleCrypto.PBKDF2();
+            string _sql = "Select UserName From EMPLOYEE Where UserName='" + _username + "' And Password='" + _pwd + "'";
+            SqlConnection cn = new SqlConnection("Data Source=HOMESERV;Initial Catalog=JSO;Integrated Security=True;MultipleActiveResultSets=True");
+            cn.Open();
+            SqlCommand cmd = new SqlCommand(_sql, cn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+                return true;
+            else
+                return false;
 
-            bool isValid = false;
-
-            using (var db = new JSO())
-            {
-                var user = db.EMPLOYEEs.FirstOrDefault(u => u.USERNAME == UserName);
-                if (user != null)
-                {
-                    if (user.PASSWORD == crypto.Compute(Password, user.PASSWORD))
-                    {
-                        isValid = true;
-                    }
-                }
-            }
-            return isValid;
         }
-    }
+
+ }
         
 
 
@@ -104,6 +98,23 @@ namespace DRApplication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Admin")]
+        public Boolean Admin { get; set; }
+
+        [Required]
+        [Display(Name = "Officer")]
+        public Boolean Officer { get; set; }
+
+        [Required]
+        [Display(Name = "Supervisor")]
+        public Boolean Supervisor { get; set; }
+
+        [Required]
+        [Display(Name = "Chief")]
+        public Boolean Chief { get; set; }
+
     }
 }
 

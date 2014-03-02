@@ -212,30 +212,47 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DRdb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DRdb.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DR.cs" />
-    <Compile Include="Models\DRdbContext.cs" />
     <Compile Include="Models\DRHEARING.cs" />
     <Compile Include="Models\DRINVESTIGATION.cs" />
     <Compile Include="Models\DRTEMP.cs" />
     <Compile Include="Models\EMPLOYEE.cs" />
-    <Compile Include="Models\FormModels.cs" />
     <Compile Include="Models\HOUSINGLOCATION.cs" />
     <Compile Include="Models\INCIDENTLOCATION.cs" />
+    <Compile Include="Models\JSOContext.cs" />
     <Compile Include="Models\LOCATION.cs" />
+    <Compile Include="Models\Mapping\DRHEARINGMap.cs" />
+    <Compile Include="Models\Mapping\DRINVESTIGATIONMap.cs" />
+    <Compile Include="Models\Mapping\DRMap.cs" />
+    <Compile Include="Models\Mapping\DRTEMPMap.cs" />
+    <Compile Include="Models\Mapping\EMPLOYEEMap.cs" />
+    <Compile Include="Models\Mapping\HOUSINGLOCATIONMap.cs" />
+    <Compile Include="Models\Mapping\INCIDENTLOCATIONMap.cs" />
+    <Compile Include="Models\Mapping\LOCATIONMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\VIOLATIONMap.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\VIOLATION.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Form\DRForm.aspx.cs">
+      <DependentUpon>DRForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Form\DRForm.aspx.designer.cs">
+      <DependentUpon>DRForm.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\Form.css" />
     <Content Include="Content\ie.css" />
     <Content Include="Content\layout.css" />
     <Content Include="Content\Login.css" />
@@ -295,11 +312,13 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="DRdb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DRdb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -358,6 +377,8 @@
     <Content Include="Images\sidebar_divider.png" />
     <Content Include="Images\sidebar_shadow.png" />
     <Content Include="Images\table_sorter_header.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\hideshow.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -377,6 +398,8 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\DRForm.ascx" />
+    <Content Include="Views\Form\DRForm.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -434,12 +457,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Helpers\Helpers.csproj">
-      <Project>{7a584c0f-464a-4800-a2d5-97fbe5d82c47}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

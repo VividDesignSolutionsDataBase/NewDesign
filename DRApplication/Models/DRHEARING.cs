@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 
 namespace DRApplication.Models
 {
     public partial class DRHEARING
     {
-        [Key]
         public int DRInvestigationDRDR_REPORT_NUM { get; set; }
         public int DR_HEAR_CHIEF_ID { get; set; }
         public string DR_HEAR_INM_PLEA { get; set; }
@@ -27,7 +26,6 @@ namespace DRApplication.Models
         public string DR_HEAR_APPROVE_FLAG { get; set; }
         public string DR_HEAR_VOID_FLAG { get; set; }
         public string DR_HEAR_REDUCT_AMEND { get; set; }
-
         public virtual DRINVESTIGATION DRINVESTIGATION { get; set; }
     }
 }

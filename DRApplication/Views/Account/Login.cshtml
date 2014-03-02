@@ -8,7 +8,7 @@
 
  @using (Html.BeginForm()) {
  @Html.AntiForgeryToken()
- @Html.ValidationSummary()
+
 
 <h1 style="text-align:center"></h1>
 
@@ -20,20 +20,22 @@
               <div>
 
                   @Html.TextBoxFor(u => u.UserName, new { placeholder = "User Name" })
-                  @Html.ValidationMessageFor(u => u.UserName)
 
               </div>
+              <div><br /></div>
               <div>
 
                   @Html.PasswordFor(p => p.Password, new { placeholder = "Password" })
-                  @Html.ValidationMessageFor(p => p.Password)
 
               </div>
 
               <div>
-                  <input type="submit" value="Log In" />
+                  <br /><input type="submit" value="Log In" />
+                   @Html.ValidationSummary()
+                  <br /><br /><br />
               </div>
           </div>
+          
           <div class="button">
               <p style="text-align: center">&copy; @DateTime.Now.Year - VividDesign Solutions</p>
           </div>
@@ -44,7 +46,13 @@
 <footer>
     <p></p>
 </footer>
+     
+     
+<link rel="stylesheet" type="text/css" href="~/Content/Login.css" />
+
+     
+@*<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>     
+ }*@
  }
  
-
-<link rel="stylesheet" type="text/css" href="~/Content/Login.css" />

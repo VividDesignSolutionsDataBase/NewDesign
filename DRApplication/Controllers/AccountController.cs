@@ -1,5 +1,6 @@
 ﻿using DRApplication.Models;
 using Microsoft.Web.WebPages.OAuth;
+using System.Data.SqlClient;
 using System;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -12,7 +13,6 @@ namespace DRApplication.Controllers
         //
         // GET: /Account/Login
 
-        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -23,25 +23,31 @@ namespace DRApplication.Controllers
         //
         // POST: /Account/Login
 
+       
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.LoginModel user)
+        public ActionResult Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.UserName, user.Password))
+                if (model.IsValid(model.UserName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-                    return RedirectToAction("Index", "Home");
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+
+                    return RedirectToLocal(returnUrl);
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Login data is incorrect!");
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 }
             }
-            return View(user);
+
+
+            return View(model);
         }
+
+
 
 
         //
@@ -52,7 +58,11 @@ namespace DRApplication.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-                //
+
+
+
+
+        //
         // GET: /Account/Register
 
         [AllowAnonymous]
@@ -67,31 +77,7 @@ namespace DRApplication.Controllers
         [HttpPost]
         public ActionResult Register(Models.RegisterModel user)     
         {
-            if (ModelState.IsValid)
-            {
-                using (var db = new JSO())
-                {
-                    var crypto = new SimpleCrypto.PBKDF2();
-
-                    var encrpPass = crypto.Compute(user.Password);
-
-                    var sysUser = db.EMPLOYEEs.Create();
-
-                  
-                    sysUser.USERNAME = user.UserName;
-                    sysUser.PASSWORD = encrpPass;
-                    Guid USERNAME = Guid.NewGuid();
-
-                    db.EMPLOYEEs.Add(sysUser);
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", " Login Data is Incorrect.");
-            }
+   
             return View();
         }
    
@@ -190,7 +176,7 @@ namespace DRApplication.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Index", "Home");
             }
         }
 

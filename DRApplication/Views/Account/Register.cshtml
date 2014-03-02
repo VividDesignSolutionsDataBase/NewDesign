@@ -30,6 +30,12 @@
                 @Html.LabelFor(p => p.ConfirmPassword)
                 @Html.PasswordFor(p => p.ConfirmPassword)
             </li>
+                @Html.LabelFor(r => r.Role)
+                @Html.CheckBoxFor(r => r.Role)
+            </li>
+
+
+
         </ol>
         <input type="submit" value="Register" />
     </fieldset>
