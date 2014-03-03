@@ -2,121 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - Department of Corrections</title>
-
+    <title>Department of Corrections</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link type="text/css" rel="stylesheet" href="~/Content/layout.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="~/Content/ie.css" media="screen" />
-
-   
     <meta name="viewport" content="width=device-width" />
 
+  
+    <link rel="stylesheet" href="~/Content/layout.css" type="text/css" media="screen" />
+
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <script src="@Url.Content("~/Scripts/jquery-2.0.3.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/hideshow.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.tablesorter.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.equalHeight.js")"></script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tablesorter").tablesorter();
+        }
+        );
+        $(document).ready(function () {
+
+            //When page loads...
+            $(".tab_content").hide(); //Hide all content
+            $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+            $(".tab_content:first").show(); //Show first tab content
+
+            //On Click Event
+            $("ul.tabs li").click(function () {
+
+                $("ul.tabs li").removeClass("active"); //Remove any "active" class
+                $(this).addClass("active"); //Add "active" class to selected tab
+                $(".tab_content").hide(); //Hide all tab content
+
+                var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+                $(activeTab).fadeIn(); //Fade in the active ID content
+                return false;
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.column').equalHeight();
+        });
+    </script>
+
+
 </head>
-<body>
-    <header id="header">
-        <hgroup>
-            <h1 class="site_title"><a href="index.html"></a>Department of Corrections</h1>
-            <h2 class="section_title"> Disciplinary Report Application</h2>
-            <div class="btn_view_site"><a href="#">Home</a></div>
-        </hgroup>
-    </header> <!-- end of header bar -->
+    <body>
+        <header id="header">
+            <hgroup>
+                <h1 class="site_title"><a href="#"></a>Department of Corrections</h1>
+                <h2 class="section_title">Disciplinary Report Application</h2>
+                
+                <div class="btn_view_site">
+                <a href="#">Home</a>
+                </div>
 
-    <section id="secondary_bar">
-        <div class="user">
-            <p>@Html.Partial("_LoginPartial") </p>
+            </hgroup>
+        </header>
+        <!-- end of header bar -->
 
-        </div>
+        <section id="secondary_bar">
+            <div class="user">
+                <p>@Html.Partial("_LoginPartial") </p>
+            </div>
+            <div class="breadcrumbs_container">
+                <article class="breadcrumbs">
+                    <a href="default.aspx">DR Application</a>
+                    <div class="breadcrumb_divider"></div>
+                    <a class="current">Dashboard</a>
+                </article>
+            </div>
+        </section>
+        <!-- end of secondary bar -->
 
+        <!-- Search bar -->
+        <aside id="sidebar" class="column">
+            <form class="quick_search">
+                <input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+            </form>
 
+            <hr />
+            <h3>Menu</h3>
+            <ul class="toggle">
+                <li class="icn_new_article">@Html.ActionLink("New Report", "Form1a", "Form")</li>
+                <li class="icn_edit_article">@Html.ActionLink("Edit Report", "Form1a", "Form")</li>
+                <li class="icn_categories">@Html.ActionLink("Report", "Report", "Form")</li>
+                <li class="icn_profile">@Html.ActionLink("Your Profile", "Manage", "Account")</li>
+            </ul>
 
-
-        <div class="breadcrumbs_container">
-            <article class="breadcrumbs">
-                <a href="Home/Index.cshtml">DR Application</a> <div class="breadcrumb_divider"></div>
-                <a class="current">Dashboard</a>
-            </article>
-        </div>
-    </section><!-- end of secondary bar -->
-
-
-
-
-
-
-    <aside id="sidebar">
-        <form class="quick_search">
-            <input type="text" value="" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
-        </form>
-        <hr />
-        <h3>Content</h3>
-        <ul class="toggle">
-            <li class="icn_new_article">@Html.ActionLink("New Report", "Form1a", "Form")</li>
-            <li class="icn_edit_article">@Html.ActionLink("Edit Report", "Index", "Home")</li>
-            <li class="icn_categories">@Html.ActionLink("Reports", "Index", "Home")</li>
-        </ul>
-
-            @if (Request.IsAuthenticated)
+          @*  @if (Request.IsAuthenticated)
             {
                 if (User.IsInRole("Chief"))
                 {
+
+                *@
+            
+            <h3>Admin</h3>
+                <ul class="toggle">
+                    <li class="icn_add_user">@Html.ActionLink("Add New User", "Register", "Account")</li>
+                    <li class="icn_view_users">@Html.ActionLink("View Users", "Users", "Account")</li>
+                    <li class="icn_settings">@Html.ActionLink("Options", "", "")</li>
+                    <li class="icn_security">@Html.ActionLink("Security", "", "")</li>
+                    <li class="icn_jump_back">@Html.ActionLink("Logout", "", "")</li>
+                </ul>
+             @*}
+             if (User.IsInRole("Chief"))
+             {*@
                     
-        <h3>Admin</h3>
-        <ul class="toggle">
+                <h3>Officer</h3>
+                <ul class="toggle">
+
+                    <li class="icn_profile">@Html.ActionLink("Your Profile", "Index", "Home")</li>
+                    <li class="icn_settings">@Html.ActionLink("Options", "Index", "Home")</li>
+                    <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
+                    <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>
+
+                </ul>
             
-            <li class="icn_add_user">@Html.ActionLink("Add  New User", "Index", "Home")</li>
-            <li class="icn_view_users">@Html.ActionLink("View Users", "Index", "Home")</li>
-            <li class="icn_profile">@Html.ActionLink("Your Profile", "Index", "Home")</li>
-            <li class="icn_settings">@Html.ActionLink("Options", "Index", "Home")</li>
-            <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
-            <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>
-        </ul>
+             @*}
+             else
+             {
+               FormsAuthentication.RedirectToLoginPage();
+             }
+             }*@
+        
+
             
-            }
-                if (User.IsInRole("Officer,Chief"))
-            {
-                    
-        <h3>Officer</h3>
-        <ul class="toggle">
-            
-            <li class="icn_profile">@Html.ActionLink("Your Profile", "Index", "Home")</li>
-            <li class="icn_settings">@Html.ActionLink("Options", "Index", "Home")</li>
-            <li class="icn_security">@Html.ActionLink("Security", "Index", "Home")</li>
-            <li class="icn_jump_back">@Html.ActionLink("Logout", "Index", "Home")</li>                    
-                     
-          </ul>
-            }
-            
-            //}
-            //else 
-            //{
-            //    //return RedirectTAction("Login", "Account");
-            //        FormsAuthentication.RedirectToLoginPage();
-            //    }
-           }    
+            <footer>
+                <hr />
+                <p><strong>&copy; @DateTime.Now.Year </strong></p>
+                <p>Theme by VividDesign Solutions</p>
+            </footer>
+        </aside>
+        <!-- end of sidebar -->
+        
 
+        <div id="body">
+           
+            @RenderSection("featured", required: false)
 
-
-
-
-        <footer>
-            <hr />
-            <p><strong>&copy; @DateTime.Now.Year - VividDesign Solutions</strong></p>
-            <p></p>
-        </footer>
-    </aside><!-- end of sidebar -->
-
-
-    <div id="main" class="column">
-          @RenderSection("featured", required: false)
-            <section style="flex-align:baseline">
+            <section id="main" class="column">
+                 <br />
+            <br />
                 @RenderBody()
+                <div class="spacer"></div>
             </section>
-   </div>
 
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
 
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-</body>
-
+    </body>
 </html>

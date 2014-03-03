@@ -6,7 +6,7 @@ html, div, map, dt, isindex, form, header, aside, section, section, article, foo
 
 html, body {
 height: 100%;
-margin: auto 0;
+margin: 0;
 padding: 0;
 font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 background: #F8F8F8;
@@ -103,12 +103,12 @@ height: 38px;
 
 .user p {
 margin: 0;
-padding: 0;
+padding: 0px;
 color: #666666;
 font-weight: bold;
 display: block;
 float: left;
-width: 85%;
+width: 70%;
 height: 35px;
 line-height: 35px;
 text-indent: 25px;
@@ -129,7 +129,7 @@ color: #77BACE;
 float: left;
 display: block;
 width: 16px;
-height: 35px;
+height: 25px;
 text-indent: -5000px;
 background: url(../images/icn_logout.png) center no-repeat;
 }
@@ -195,8 +195,9 @@ margin: 0 5px;
 aside#sidebar {
 width: 23%;
 background: #E0E0E3 url(../images/sidebar.png) repeat;
+background-size:inherit 100%;
 float: left;
-min-height: 500px;
+min-height:850px;
 margin-top: -4px;
 }
 
@@ -362,7 +363,7 @@ margin-top: 20%;
 
 
 section#main {
-width: 77%;
+width: 960px;
 min-height: 500px;
 background: url(../images/sidebar_shadow.png) repeat-y left top;
 float: left;
