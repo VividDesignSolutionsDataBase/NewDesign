@@ -4,7 +4,7 @@
     ViewBag.Title = "DR Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using (Html.BeginForm()) {
 <div class="grid_21 container_21 clear-fix">
 <div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
     <div class="prefix_7 grid_7 alpha">
@@ -17,8 +17,9 @@
     </div>
     <div style="top:35px;" class="grid_7 omega">
         <p style="top:7px; text-align:right;" class="grid_2 alpha prefix_1">@Html.Label("REPORT#: ")</p>
-        <p class="grid_3 suffix_1 omega"><input id="report" type="text" /></p>
+        <p class="grid_3 suffix_1 omega"><input name="DR_REPORT_NUM" id="report" type="text" /></p>
     </div>
+</div>
 </div>
 
 <div class="grid_21 container_21 clear-fix" style="background: lightblue;">
@@ -27,11 +28,11 @@
     </div>
     <div class="grid_7">
         <p style="top:8px; text-align:right;" class="grid_3 alpha omega">@Html.Label("LAST NAME: ")</p>
-        <p class="grid_4 omega"><input id="LName" type="text" /></p>
+        <p class="grid_4 omega"><input name="DR_INM_LAST_NAME" id="LName" type="text" /></p>
     </div>
     <div class="grid_7">
         <p style ="top:8px; text-align:right;" class="grid_3 alpha">@Html.Label("FIRST NAME: ")</p>
-        <p class="grid_4 omega"><input id="FName" type="text" /></p>
+        <p class="grid_4 omega"><input name="DR_INM_FIRST_NAME" id="FName" type="text" /></p>
     </div>
     <div class="grid_5 omega">
            <p style="top:8px; text-align:right;"class="grid_1 alpha">@Html.Label("JAIL# ")</p>
@@ -238,3 +239,4 @@
     </div>
 </div>
 
+}

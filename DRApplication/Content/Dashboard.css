@@ -31,7 +31,7 @@
   display: inline-block;
 }
 #menu-dash a {
-  padding: 0 40px;
+  padding: 0 0px;
   line-height: 70px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -51,36 +51,34 @@
   text-decoration: solid;
 }
 #content {
-  height: 500px;
-  width: 700px;
-  margin: 0 auto;
-  border: 1px double black;
-  background: gray;
+  height: 600px;
+  width: 1000px;
+  padding-left: 10px;
+  margin-left:20px;
+  background: white;
 }
 #content > div {
-  background: black;
-  height: 210px;
-  width: 200px;
+  height: 275px;
+  width: 452px;
   display: inline-block;
   padding: 5px 9px;
   margin-left: 8px;
-  margin-top: 20px;
+  margin-top: 10px;
   border: 1px solid white;
 }
 #content div div:first-child {
-  height: 180px;
-  width: 190px;
-  margin-left:5px;
-  margin-top:5px;
-  color: white;
+  height: 275px;
+  width: 452px;
+  color: #666666;
   padding-left: 5px;
+  background: rgba(189, 189, 189, 0.56);
   border: 1px solid grey;
 }
 #content div div:last-child {
   height: 20px;
   width: 190px;
   margin-left: 5px;
-  color: white;
+  color: #666666;
   text-align: center;
   letter-spacing: 6px;
   font-size: 20px;
