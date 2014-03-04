@@ -1,9 +1,10 @@
-﻿<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+﻿<link href="~/Content/Form.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "DR Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<<<<<<< HEAD
 <form action="#" method="post">
     <div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
         <div class="prefix_7 grid_7 alpha">
@@ -35,6 +36,41 @@
             <p style="top:8px; text-align:right;" class="grid_1 alpha">@Html.Label("JAIL# ")</p>
             <p class="grid_4 omega"><input id="DrInmJailNum" type="text" /></p>
         </div>
+=======
+@using (Html.BeginForm()) {
+<div class="grid_21 container_21 clear-fix">
+<div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
+    <div class="prefix_7 grid_7 alpha">
+        <div id="formheader">
+            <h3>OFFICE OF THE SHERIFF</h3>
+            <h3>DEPARTMENT OF CORRECTIONS</h3>
+            <h3>DISCIPLINARY REPORT</h3>
+            <br />
+        </div>
+    </div>
+    <div style="top:35px;" class="grid_7 omega">
+        <p style="top:7px; text-align:right;" class="grid_2 alpha prefix_1">@Html.Label("REPORT#: ")</p>
+        <p class="grid_3 suffix_1 omega"><input name="DR_REPORT_NUM" id="report" type="text" /></p>
+    </div>
+</div>
+</div>
+
+<div class="grid_21 container_21 clear-fix" style="background: lightblue;">
+    <div style="top:9px;" class="grid_2 alpha omega">
+        <p>@Html.Label(" INMATE'S:")</p>
+    </div>
+    <div class="grid_7">
+        <p style="top:8px; text-align:right;" class="grid_3 alpha omega">@Html.Label("LAST NAME: ")</p>
+        <p class="grid_4 omega"><input name="DR_INM_LAST_NAME" id="LName" type="text" /></p>
+    </div>
+    <div class="grid_7">
+        <p style ="top:8px; text-align:right;" class="grid_3 alpha">@Html.Label("FIRST NAME: ")</p>
+        <p class="grid_4 omega"><input name="DR_INM_FIRST_NAME" id="FName" type="text" /></p>
+    </div>
+    <div class="grid_5 omega">
+           <p style="top:8px; text-align:right;"class="grid_1 alpha">@Html.Label("JAIL# ")</p>
+           <p class="grid_4 omega"><input id="JailNo" type="text" /></p>
+>>>>>>> FETCH_HEAD
     </div>
     <div class="grid_21 container_21" style="background: lightblue;">
         <div style="text-align:right; top:7px;" class="grid_1 alpha">@Html.Label("RSA: ")</div>
@@ -191,6 +227,7 @@
                 }, "Year")
             </div>
         </div>
+<<<<<<< HEAD
         <div class="grid_21">
             <div class="prefix_8 grid_3 alpha">
                 <p style="font-size:15px; position: relative;top:10px;text-align:right;">Time of incident</p>
@@ -223,13 +260,52 @@
                 <p><input id="RepStaffSig1" type="text" /></p>
                 <p style="position:relative;top:-12px;">Reporting Staff Signature/ID#</p>
             </div>
+=======
+    </div>
+    <div class="grid_21">
+        <div class="prefix_8 grid_3 alpha">
+            <p style="font-size:15px; position: relative;top:10px;text-align:right;">Time of incident</p>
+        </div>
+        <div class="grid_2">
+            <p style="font-size:12px;">
+                <textarea id="IncidentTime" rows="8" cols="90" placeholder="Comment section" /></p>
+        </div>
+        <div class="grid_4">
+            <p style="font-size:15px; position: relative;top:10px; text-align:right;">Location of incident</p>
+        </div>
+        <div class="grid_4 omega">
+            <p><input id="IncidentLoc" type="text" size="10"/></p>
+        </div>
+    </div><!--end incident row-->
+    <div class="grid_21 container_21">
+        <div class="prefix_1 grid_19 suffix_1 alpha omega">
+            <textarea id="TextArea1" rows="5" cols="840"></textarea> 
+        </div>
+    </div><!--textarea and submit button-->
+    <div class="grid_21 container_21 clear-fix">
+        <div class="prefix_1 center grid_3 alpha">
+            <p><input id="RepDate" type="text" /></p>
+            <p style="position:relative;top:-12px;">Date Completed</p>
+        </div>
+        <div class="prefix_1 center grid_3">
+            <p><input id="RepTime" type="text" /></p>
+            <p style="position:relative;top:-12px;">Time Completed</p>
+        </div>
+        <div class="prefix_1 center grid_5 suffix_6 omega">
+            <p><input id="RepStaffSig1" type="text" /></p>
+            <p style="position:relative;top:-12px;">Reporting Staff Signature/ID#</p>
+>>>>>>> FETCH_HEAD
         </div>
     </div>
     <div class="grid_21 container_21" style="background:lightblue;">
         <br />
         <div class="prefix_9 grid_3 suffix_9 alpha omega">
 
+<<<<<<< HEAD
             <p><input id="DR2b" type="submit" value="Submit Initial Report" style="background: lightgreen;" /></p>
         </div>
     </div>
 </form>
+=======
+}
+>>>>>>> FETCH_HEAD

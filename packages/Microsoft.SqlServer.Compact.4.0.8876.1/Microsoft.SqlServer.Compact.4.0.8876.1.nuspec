@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
+<<<<<<< HEAD
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+=======
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+>>>>>>> FETCH_HEAD
   <metadata>
     <id>Microsoft.SqlServer.Compact</id>
     <version>4.0.8876.1</version>
@@ -10,5 +14,11 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>SQL Server Compact. An embedded SQL database.</description>
     <summary>SQL Server Compact. An embedded SQL database.</summary>
+<<<<<<< HEAD
+=======
+    <references>
+      <reference file="System.Data.SqlServerCe.dll" />
+    </references>
+>>>>>>> FETCH_HEAD
   </metadata>
 </package>
