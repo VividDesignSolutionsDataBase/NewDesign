@@ -330,7 +330,7 @@ aside {
 
 /* login page */
 #loginForm {
-    border-right: solid 2px #c8c8c8;
+    border-right: solid 2px #e80c4d;
     float: left;
     width: 55%;
 }
@@ -590,7 +590,7 @@ tr.pager td {
 /********************
 *   Mobile Styles   *
 ********************/
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 0px) {
 
     /* header
     ----------------------------------------------------------*/

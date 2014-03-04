@@ -1,6 +1,9 @@
 ﻿@model DRApplication.Models.RegisterModel
+
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <hgroup class="title">
@@ -16,17 +19,23 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.LabelFor(u => u.UserName)
+                @Html.TextBoxFor(u => u.UserName)
             </li>
             <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
+                @Html.LabelFor(p => p.Password)
+                @Html.PasswordFor(p => p.Password)
             </li>
             <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.LabelFor(p => p.ConfirmPassword)
+                @Html.PasswordFor(p => p.ConfirmPassword)
             </li>
+                @Html.LabelFor(r => r.Role)
+                @Html.CheckBoxFor(r => r.Role)
+            </li>
+
+
+
         </ol>
         <input type="submit" value="Register" />
     </fieldset>

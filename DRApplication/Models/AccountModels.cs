@@ -1,36 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Globalization;
-using System.Web.Security;
+using System.Data.SqlClient;
+
 
 namespace DRApplication.Models
 {
     public class UsersContext : DbContext
     {
-        public UsersContext()
-            : base("DefaultConnection")
+        public UsersContext(): base("JSOContext")
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<EMPLOYEE> EMPLOYEEs { get; set; }
     }
 
-    [Table("UserProfile")]
+    [Table("EMPLOYEE")]
     public class UserProfile
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-    
+        public int EMP_ID { get; set; }
+
+        [Required]
+        [StringLength(25)]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; } //Employee UserName
+       
+        public string Role { get; set; } //Employee Role
+
     }
+
 
     public class LocalPasswordModel
     {
         [Required]
+        [StringLength(25, MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
         public string OldPassword { get; set; }
@@ -45,12 +50,13 @@ namespace DRApplication.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
     }
 
     public class LoginModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Employee ID")]
         public string UserName { get; set; }
 
         [Required]
@@ -58,14 +64,28 @@ namespace DRApplication.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
+        public bool IsValid(string _username, string _pwd)
+        {
+            string _sql = "Select UserName From EMPLOYEE Where UserName='" + _username + "' And Password='" + _pwd + "'";
+            SqlConnection cn = new SqlConnection("Data Source=HOMESERV;Initial Catalog=JSO;Integrated Security=True;MultipleActiveResultSets=True");
+            cn.Open();
+            SqlCommand cmd = new SqlCommand(_sql, cn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+                return true;
+            else
+                return false;
+
+        }
+
+ }
+        
+
 
     public class RegisterModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Employee ID")]
         public string UserName { get; set; }
 
         [Required]
@@ -78,12 +98,23 @@ namespace DRApplication.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
 
-    public class ExternalLogin
-    {
-        public string Provider { get; set; }
-        public string ProviderDisplayName { get; set; }
-        public string ProviderUserId { get; set; }
+        [Required]
+        [Display(Name = "Admin")]
+        public Boolean Admin { get; set; }
+
+        [Required]
+        [Display(Name = "Officer")]
+        public Boolean Officer { get; set; }
+
+        [Required]
+        [Display(Name = "Supervisor")]
+        public Boolean Supervisor { get; set; }
+
+        [Required]
+        [Display(Name = "Chief")]
+        public Boolean Chief { get; set; }
+
     }
 }
+

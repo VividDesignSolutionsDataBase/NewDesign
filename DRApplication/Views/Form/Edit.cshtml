@@ -1,11 +1,15 @@
-﻿@model DisciplinaryReport.Models.FormModel
+﻿@model DRApplication.Models.DR
 
 @{
-    ViewBag.Title = "DR Form";
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    
+
+<h2>Edit Your Account</h2>
+
 @using (Html.BeginForm()) {
-       @Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)
+
 
 <div style="border: 1px inset black; background:lightblue;" class="grid_21 container_21 clear-fix">
     <div class="prefix_7 grid_7 alpha">
@@ -236,7 +240,7 @@
         <p><input id="DR2b" type="submit" value="Submit Initial Report" style="background: lightgreen;" /></p>
     </div>
 </div>
-
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
